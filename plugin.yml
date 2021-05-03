@@ -1,0 +1,93 @@
+name: PlatinumMMO
+main: com.gmail.Lecrayen.Annarkwin.MMO.MMO
+version: 1.0
+api-version: 1.16
+depend: [PlatinumAPI]
+
+commands:
+  AFK:
+    description: "Set your AFK Status"
+    aliases: []
+    permission: platinum.afk
+    usage: /AFK Help
+  Enderchest:
+    description: "Administrate enderchests"
+    aliases: []
+    permission: platinum.enderchest
+    usage: /Enderchest Help
+  Inventory:
+    description: "Administrate inventories"
+    aliases: []
+    permission: platinum.inventory
+    usage: /Inventory Help
+  Test:
+    description: "Test Command"
+    aliases: []
+    permission: platinum.test
+    usage: /Test
+  Portal:
+    description: "Hook portals to warp points for public use"
+    aliases: []
+    permission: platinum.portal
+    usage: /Portal Help
+  Quarry:
+    description: "Make automatically regenerating quarries"
+    aliases: []
+    permission: platinum.quarry
+    usage: /Quarry Help
+  Region:
+    description: "Set up protected regions"
+    aliases: []
+    permission: platinum.region
+    usage: /Region Help
+  Spawn:
+    description: "Alias for /warp go spawn"
+    aliases: []
+    permission: platinum.spawn
+    usage: /Spawn Help
+  Warp:
+    description: "Create warp points for fast travel"
+    aliases: []
+    permission: platinum.warp
+    usage: /Warp Help
+
+permissions:
+  platinum.afk.user:
+    default: true
+    children:
+      platinum.afk: true
+      platinum.afk.help: true
+      platinum.afk.afk: true
+  platinum.quarry.user:
+    default: true
+    children:
+      platinum.quarry: true
+      platinum.quarry.help: true
+      platinum.quarry.go: true
+      platinum.quarry.list: true
+  platinum.warp.user:
+    default: true
+    children:
+      platinum.warp: true
+      platinum.warp.help: true
+      platinum.warp.go: true
+      platinum.warp.list: true
+  platinum.region.user:
+    default: true
+    children:
+      platinum.region: true
+      platinum.region.help: true
+      platinum.region.info: true
+  platinum.spawn.user:
+    default: true
+    children:
+      platinum.warp: true
+      platinum.warp.go: true
+      platinum.spawn: true
+      platinum.spawn.help: true
+  platinum.inventory.user:
+    default: true
+    children:
+      platinum.inventory: true
+      platinum.inventory.help: true
+      platinum.inventory.drop: true

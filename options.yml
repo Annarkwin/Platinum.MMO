@@ -1,0 +1,30 @@
+Portals:
+    enabled:true
+Zones:
+    flagdefaults:
+        explosions: false
+        firespread: false
+        animals: true
+        monsters: false
+        growth: true
+        pvp: false
+    anyone_list_allowed: false
+    cost_per_block: 12
+    lower_y_limit: 40
+    upper_y_limit: 256
+    default_min_y: 40
+    default_max_y: 256
+Quarries:
+    enabled: true
+    refillminutes: 2880
+Money:
+    tax:
+        percent: 0.0
+        minutes: 60
+    interest:
+        percent: 0.0
+        minutes: 60
+    earning:
+        amount: 5
+        minutes: 1
+    
