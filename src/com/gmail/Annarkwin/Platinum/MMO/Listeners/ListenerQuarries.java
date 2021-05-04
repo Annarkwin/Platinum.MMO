@@ -6,6 +6,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
 
 import com.gmail.Annarkwin.Platinum.API.TickerEvent;
 import com.gmail.Annarkwin.Platinum.API.TickerEvent.TickerEventType;
+import com.gmail.Annarkwin.Platinum.API.Events.PlayerMineEvent;
 import com.gmail.Annarkwin.Platinum.MMO.MMO;
 import com.gmail.Annarkwin.Platinum.MMO.Quarry;
 
@@ -26,5 +27,12 @@ public class ListenerQuarries implements Listener {
 		Quarry q = MMO.quarry_manager.getQuarry(event.getPlayer().getLocation());
 		
 		if (q != null) event.getPlayer().teleport(q.getWarpLocation());
+	}
+	
+	@EventHandler (ignoreCancelled = false)
+	public void quarryMine(PlayerMineEvent event) {
+		Quarry q = MMO.quarry_manager.getQuarry(event.getBlock().getLocation());
+		
+		if (q != null && q.getHook() == "" || event.getPlayer().hasPermission(q.getHook())) event.setCancelled(false);
 	}
 }
