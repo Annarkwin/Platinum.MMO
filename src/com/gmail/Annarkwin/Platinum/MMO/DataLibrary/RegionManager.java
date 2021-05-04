@@ -5,14 +5,13 @@ import java.util.HashSet;
 import java.util.UUID;
 
 import org.bukkit.Location;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import com.gmail.Annarkwin.Platinum.API.Cube;
 import com.gmail.Annarkwin.Platinum.API.FileStorage;
 import com.gmail.Annarkwin.Platinum.MMO.Region;
-import com.gmail.Annarkwin.Platinum.MMO.Exceptions.RegionAreaSplitException;
 import com.gmail.Annarkwin.Platinum.MMO.Exceptions.RegionIntersectException;
-import com.gmail.Annarkwin.Platinum.MMO.Exceptions.UnallowedToParentRegionException;
 
 public class RegionManager {
 
@@ -26,37 +25,26 @@ public class RegionManager {
 		importData();
 	}
 	
-	public Region addRegion(Region r, UUID player, int layer) throws RegionAreaSplitException, RegionIntersectException, UnallowedToParentRegionException {
-		//No Intersecting region on same layer
-		//No Intersecting region on higher layer
-		//Region completely contained within region on lower layer
-		//Player has permissions to region on lower layer
-		regions.add(r);
-		return r;
-	}
-	
-	public Region removeRegion(Region r){
-		// TODO 
+	public Region addRegion(Cube c, Player p) throws RegionIntersectException {
+		if (isIntersectingRegion(c)) {
+			throw new RegionIntersectException();
+		} else {
+			Region r = new Region(c, p);
+			regions.add(r);
+			return r;
+		}
 		
-		//Player has permissions to lower region, removed region, and all higher regions
-		//Remove all higher regions
-		return r;
 	}
 	
-	public Region removeRegion(Region r, int layer){
-		// TODO 
-		return r;
+	public boolean removeRegion(Region r){
+		return regions.remove(r);
 	}
 	
 	//Return the highest region at location
 	public Region getRegion(Location location) {
-		// TODO 
-		return null;
-	}
-
-	//Return the region at location for the specified layer
-	public Region getRegion(Location location, int layer) {
-		// TODO 
+		for (Region r : regions) {
+			if (r.getArea().containsPoint(location)) return r;
+		}
 		return null;
 	}
 
@@ -67,34 +55,21 @@ public class RegionManager {
 
 	//Return all regions owned by given player
 	public ArrayList<Region> getRegions(UUID player) {
-		// TODO 
-		return null;
-	}
-
-	//Return all regions in all layers at location
-	public ArrayList<Region> getRegions(Location location) {
-		// TODO 
-		return null;
-	}
-	
-	//Return all regions in specified layer
-	public HashSet<Region> getRegions(int layer){
+		ArrayList<Region> list = new ArrayList<Region>();
 		
-		return null;
+		for (Region r : regions) {
+			if (r.getOwner().equals(player)) list.add(r);
+		}
+		
+		list.sort(null);
+		return list;
 	}
 
-	public boolean isIntersectingRegion(Cube c, int layer){
+	public boolean isIntersectingRegion(Cube c){
 		for (Region r : getRegions()){
-			if (r.getLayer() == layer && r.getArea().intersectsCube(c)) return true;
+			if (r.getArea().intersectsCube(c)) return true;
 		}
 		return false;
-	}
-
-	public Region getIntersectingRegion(Cube c, int layer){
-		for (Region r : getRegions()){
-			if (r.getLayer() == layer && r.getArea().intersectsCube(c)) return r;
-		}
-		return null;
 	}
 		
 	@SuppressWarnings("unchecked")

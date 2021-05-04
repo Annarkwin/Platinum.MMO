@@ -14,7 +14,7 @@ import org.bukkit.entity.Player;
 import com.gmail.Annarkwin.Platinum.API.Cube;
 
 @SerializableAs("Zone")
-public class Region implements ConfigurationSerializable {
+public class Region implements ConfigurationSerializable, Comparable<Region> {
 	private String name = "";
 	private String id = "";
 	private int layer = 0;
@@ -162,6 +162,11 @@ public class Region implements ConfigurationSerializable {
 	
 	public UUID getID() {
 		return UUID.fromString(id);
+	}
+
+	@Override
+	public int compareTo(Region o) {
+		return getID().compareTo(o.getID());
 	}
 	
 }

@@ -5,16 +5,16 @@ import org.bukkit.command.CommandSender;
 import com.gmail.Annarkwin.Platinum.API.MainCommand;
 import com.gmail.Annarkwin.Platinum.API.Subcommand;
 
-public class RegionAllow implements Subcommand {
+public class RegionLock implements Subcommand {
 
-	private String description = "Allow a player to the current region";
+	private String description = "Lock doors";
 	private MainCommand main;
-	private String name = "allow";
-	private String permission = "platinum.region.allow";
+	private String name = "lock";
+	private String permission = "platinum.region.lock";
 	private boolean playeronly = true;
-	private String usage = "/region allow <player> (number) (asplayer)";
+	private String usage = "/region lock";
 
-	public RegionAllow(MainCommand maincommand) {
+	public RegionLock(MainCommand maincommand) {
 		main = maincommand;
 	}
 

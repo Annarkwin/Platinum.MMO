@@ -5,16 +5,16 @@ import org.bukkit.command.CommandSender;
 import com.gmail.Annarkwin.Platinum.API.MainCommand;
 import com.gmail.Annarkwin.Platinum.API.Subcommand;
 
-public class RegionAllow implements Subcommand {
+public class RegionAnimals implements Subcommand {
 
-	private String description = "Allow a player to the current region";
+	private String description = "Toggle animal spawning";
 	private MainCommand main;
-	private String name = "allow";
-	private String permission = "platinum.region.allow";
+	private String name = "animals";
+	private String permission = "platinum.region.animals";
 	private boolean playeronly = true;
-	private String usage = "/region allow <player> (number) (asplayer)";
+	private String usage = "/region animals";
 
-	public RegionAllow(MainCommand maincommand) {
+	public RegionAnimals(MainCommand maincommand) {
 		main = maincommand;
 	}
 

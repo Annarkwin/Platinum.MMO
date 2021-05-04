@@ -5,16 +5,16 @@ import org.bukkit.command.CommandSender;
 import com.gmail.Annarkwin.Platinum.API.MainCommand;
 import com.gmail.Annarkwin.Platinum.API.Subcommand;
 
-public class RegionAllow implements Subcommand {
+public class RegionPVP implements Subcommand {
 
-	private String description = "Allow a player to the current region";
+	private String description = "Toggle zone PVP";
 	private MainCommand main;
-	private String name = "allow";
-	private String permission = "platinum.region.allow";
+	private String name = "pvp";
+	private String permission = "platinum.region.pvp";
 	private boolean playeronly = true;
-	private String usage = "/region allow <player> (number) (asplayer)";
+	private String usage = "/region pvp";
 
-	public RegionAllow(MainCommand maincommand) {
+	public RegionPVP(MainCommand maincommand) {
 		main = maincommand;
 	}
 

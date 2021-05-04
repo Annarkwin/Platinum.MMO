@@ -5,16 +5,16 @@ import org.bukkit.command.CommandSender;
 import com.gmail.Annarkwin.Platinum.API.MainCommand;
 import com.gmail.Annarkwin.Platinum.API.Subcommand;
 
-public class RegionAllow implements Subcommand {
+public class RegionSetWarp implements Subcommand {
 
-	private String description = "Allow a player to the current region";
+	private String description = "Set region warp point";
 	private MainCommand main;
-	private String name = "allow";
-	private String permission = "platinum.region.allow";
+	private String name = "setwarp";
+	private String permission = "platinum.region.setwarp";
 	private boolean playeronly = true;
-	private String usage = "/region allow <player> (number) (asplayer)";
+	private String usage = "/region setwarp";
 
-	public RegionAllow(MainCommand maincommand) {
+	public RegionSetWarp(MainCommand maincommand) {
 		main = maincommand;
 	}
 

@@ -33,6 +33,6 @@ public class ListenerQuarries implements Listener {
 	public void quarryMine(PlayerMineEvent event) {
 		Quarry q = MMO.quarry_manager.getQuarry(event.getBlock().getLocation());
 		
-		if (q != null && q.getHook() == "" || event.getPlayer().hasPermission(q.getHook())) event.setCancelled(false);
+		if (q != null && (q.getHook() == "" || event.getPlayer().hasPermission(q.getHook()))) event.setCancelled(false);
 	}
 }

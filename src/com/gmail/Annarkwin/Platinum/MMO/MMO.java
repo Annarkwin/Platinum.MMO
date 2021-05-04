@@ -23,6 +23,7 @@ import com.gmail.Annarkwin.Platinum.MMO.DataLibrary.UserManager;
 import com.gmail.Annarkwin.Platinum.MMO.DataLibrary.WarpManager;
 import com.gmail.Annarkwin.Platinum.MMO.Listeners.ListenerCrops;
 import com.gmail.Annarkwin.Platinum.MMO.Listeners.ListenerGameChanger;
+import com.gmail.Annarkwin.Platinum.MMO.Listeners.ListenerMOTD;
 import com.gmail.Annarkwin.Platinum.MMO.Listeners.ListenerPortals;
 import com.gmail.Annarkwin.Platinum.MMO.Listeners.ListenerQuarries;
 import com.gmail.Annarkwin.Platinum.MMO.Listeners.ListenerRegionProtection;
@@ -96,6 +97,7 @@ public class MMO extends JavaPlugin {
 		getServer().getPluginManager().registerEvents(new RegisterAPIEvents(), this);
 		getServer().getPluginManager().registerEvents(new ListenerCrops(), this);
 		getServer().getPluginManager().registerEvents(new ListenerGameChanger(), this);
+		getServer().getPluginManager().registerEvents(new ListenerMOTD(), this);
 		getServer().getPluginManager().registerEvents(new ListenerPortals(), this);
 		getServer().getPluginManager().registerEvents(new ListenerQuarries(), this);
 		getServer().getPluginManager().registerEvents(new ListenerRegionProtection(), this);
