@@ -1,5 +1,7 @@
 package com.gmail.Annarkwin.Platinum.MMO.Listeners;
 
+import java.util.logging.Level;
+
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -24,6 +26,7 @@ public class ListenerPortals implements Listener {
 				
 			p.teleport(portal.getWarpLocation());
 			p.sendMessage("§2[Info]:§f Teleported to " + portal.getWarp().getName());
+			Bukkit.getLogger().log(Level.INFO, "Portal Event: " + p.getName() + " has gone through " + portal.getName() + " to " + portal.getWarp().getName());
 		}
 	}
 }
