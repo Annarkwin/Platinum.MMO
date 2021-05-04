@@ -29,7 +29,6 @@ import com.gmail.Annarkwin.Platinum.MMO.Listeners.ListenerQuarries;
 import com.gmail.Annarkwin.Platinum.MMO.Listeners.ListenerRegionProtection;
 import com.gmail.Annarkwin.Platinum.MMO.Listeners.ListenerScoreboardUpdate;
 import com.gmail.Annarkwin.Platinum.MMO.Listeners.ListenerSelection;
-import com.gmail.Annarkwin.Platinum.MMO.Listeners.ListenerSpawning;
 import com.gmail.Annarkwin.Platinum.MMO.Listeners.ListenerUser;
 
 public class MMO extends JavaPlugin {
@@ -103,7 +102,6 @@ public class MMO extends JavaPlugin {
 		getServer().getPluginManager().registerEvents(new ListenerRegionProtection(), this);
 		getServer().getPluginManager().registerEvents(new ListenerScoreboardUpdate(), this);
 		getServer().getPluginManager().registerEvents(new ListenerSelection(Material.STICK), this);
-		getServer().getPluginManager().registerEvents(new ListenerSpawning(), this);
 		getServer().getPluginManager().registerEvents(new ListenerUser(), this);
 	}
 }
