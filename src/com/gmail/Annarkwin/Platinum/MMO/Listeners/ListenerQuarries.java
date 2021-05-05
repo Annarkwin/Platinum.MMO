@@ -1,12 +1,13 @@
 package com.gmail.Annarkwin.Platinum.MMO.Listeners;
 
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 
 import com.gmail.Annarkwin.Platinum.API.TickerEvent;
 import com.gmail.Annarkwin.Platinum.API.TickerEvent.TickerEventType;
-import com.gmail.Annarkwin.Platinum.API.Events.PlayerMineEvent;
 import com.gmail.Annarkwin.Platinum.MMO.MMO;
 import com.gmail.Annarkwin.Platinum.MMO.Quarry;
 
@@ -43,13 +44,13 @@ public class ListenerQuarries implements Listener
 
 	}
 
-	@EventHandler(ignoreCancelled = false)
-	public void quarryMine( PlayerMineEvent event )
+	@EventHandler(ignoreCancelled = false, priority = EventPriority.HIGH)
+	public void quarryMine( BlockBreakEvent event )
 	{
 
 		Quarry q = MMO.quarry_manager.getQuarry(event.getBlock().getLocation());
 
-		if (q != null && (q.getHook() == "" || event.getPlayer().hasPermission(q.getHook())))
+		if (q != null && (q.getHook().equals("") || event.getPlayer().hasPermission(q.getHook())))
 			event.setCancelled(false);
 
 	}
