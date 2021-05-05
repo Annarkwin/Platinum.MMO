@@ -5,7 +5,8 @@ import org.bukkit.command.CommandSender;
 import com.gmail.Annarkwin.Platinum.API.MainCommand;
 import com.gmail.Annarkwin.Platinum.API.Subcommand;
 
-public class RegionHere implements Subcommand {
+public class RegionHere implements Subcommand
+{
 
 	private String description = "List current region and parent regions";
 	private MainCommand main;
@@ -14,42 +15,67 @@ public class RegionHere implements Subcommand {
 	private boolean playeronly = true;
 	private String usage = "/region here";
 
-	public RegionHere(MainCommand maincommand) {
+	public RegionHere( MainCommand maincommand )
+	{
+
 		main = maincommand;
+
 	}
 
 	@Override
-	public String getDescription() {
+	public String getDescription()
+	{
+
 		return description;
+
 	}
 
 	@Override
-	public MainCommand getMainCommand() {
+	public MainCommand getMainCommand()
+	{
+
 		return main;
+
 	}
 
 	@Override
-	public String getName() {
+	public String getName()
+	{
+
 		return name;
+
 	}
 
 	@Override
-	public String getPermission() {
+	public String getPermission()
+	{
+
 		return permission;
+
 	}
 
 	@Override
-	public String getUsage() {
+	public String getUsage()
+	{
+
 		return usage;
+
 	}
 
 	@Override
-	public boolean isPlayerOnly() {
+	public boolean isPlayerOnly()
+	{
+
 		return playeronly;
+
 	}
 
 	@Override
-	public void run(CommandSender sender, String[] args) {
-		
+	public void run( CommandSender sender, String[] args )
+	{
+
+		// Unneeded
+
 	}
+
 }

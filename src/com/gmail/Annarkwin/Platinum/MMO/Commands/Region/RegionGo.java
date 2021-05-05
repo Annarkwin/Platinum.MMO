@@ -5,51 +5,77 @@ import org.bukkit.command.CommandSender;
 import com.gmail.Annarkwin.Platinum.API.MainCommand;
 import com.gmail.Annarkwin.Platinum.API.Subcommand;
 
-public class RegionGo implements Subcommand {
+public class RegionGo implements Subcommand
+{
 
 	private String description = "Teleport to a region";
 	private MainCommand main;
-	private String name = "remove";
-	private String permission = "platinum.region.remove";
+	private String name = "go";
+	private String permission = "platinum.region.go";
 	private boolean playeronly = true;
-	private String usage = "/region go (asplayer) <name/number>";
+	private String usage = "/region go <name/number>";
 
-	public RegionGo(MainCommand maincommand) {
+	public RegionGo( MainCommand maincommand )
+	{
+
 		main = maincommand;
+
 	}
 
 	@Override
-	public String getDescription() {
+	public String getDescription()
+	{
+
 		return description;
+
 	}
 
 	@Override
-	public MainCommand getMainCommand() {
+	public MainCommand getMainCommand()
+	{
+
 		return main;
+
 	}
 
 	@Override
-	public String getName() {
+	public String getName()
+	{
+
 		return name;
+
 	}
 
 	@Override
-	public String getPermission() {
+	public String getPermission()
+	{
+
 		return permission;
+
 	}
 
 	@Override
-	public String getUsage() {
+	public String getUsage()
+	{
+
 		return usage;
+
 	}
 
 	@Override
-	public boolean isPlayerOnly() {
+	public boolean isPlayerOnly()
+	{
+
 		return playeronly;
+
 	}
 
 	@Override
-	public void run(CommandSender sender, String[] args) {
-		
+	public void run( CommandSender sender, String[] args )
+	{
+
+		// TODO
+
 	}
+
 }

@@ -1,6 +1,7 @@
 package com.gmail.Annarkwin.Platinum.MMO.Exceptions;
 
-public abstract class RegionAreaException extends RegionException {
+public abstract class RegionAreaException extends RegionException
+{
 
 	/**
 	 * 

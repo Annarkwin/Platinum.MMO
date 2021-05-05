@@ -16,11 +16,12 @@ import org.bukkit.entity.Player;
 import com.gmail.Annarkwin.Platinum.API.Cube;
 
 @SerializableAs("Quarry")
-public class Quarry implements ConfigurationSerializable {
+public class Quarry implements ConfigurationSerializable
+{
 
-	private Cube area = null;					// Region area
-	private String name = "Broken Quarry";				// Region name
-	private Location warp = null;				// Warp to zone location
+	private Cube area = null; // Region area
+	private String name = "Broken Quarry"; // Region name
+	private Location warp = null; // Warp to zone location
 	private boolean enabled = true;
 	private String hook = "";
 	private long cooldown = 0;
@@ -28,125 +29,220 @@ public class Quarry implements ConfigurationSerializable {
 	private String material = Material.AIR.toString();
 	private int data = 0;
 
-	public Quarry(Cube area, String name, Location warp, Material m, byte dta){
+	public Quarry( Cube area, String name, Location warp, Material m, byte dta )
+	{
+
 		this.area = area;
 		this.name = name;
 		this.warp = warp;
 		material = m.toString();
 		data = dta;
+
 	}
 
-	public Quarry(Map<String, Object> o){
-		//Get fields of object and retrieve them from map
-		for(Field f : this.getClass().getDeclaredFields()){
-			try {
-				if(o.get(f.getName()) != null)
+	public Quarry( Map<String, Object> o )
+	{
+
+		// Get fields of object and retrieve them from map
+		for (Field f : this.getClass().getDeclaredFields())
+		{
+
+			try
+			{
+
+				if (o.get(f.getName()) != null)
 					f.set(this, o.get(f.getName()));
-			} catch (Exception e) {
-				//Default
+
 			}
+			catch (Exception e)
+			{
+
+				// Default
+			}
+
 		}
+
 	}
 
 	@Override
-	public Map<String, Object> serialize() {
-		//Get fields of object and map them with value
+	public Map<String, Object> serialize()
+	{
+
+		// Get fields of object and map them with value
 		HashMap<String, Object> s = new HashMap<String, Object>();
-		for(Field f : this.getClass().getDeclaredFields()){
-			try {
+
+		for (Field f : this.getClass().getDeclaredFields())
+		{
+
+			try
+			{
+
 				s.put(f.getName(), f.get(this));
-			} catch (Exception e) {
-				e.printStackTrace();
+
 			}
+			catch (Exception e)
+			{
+
+				e.printStackTrace();
+
+			}
+
 		}
+
 		return s;
+
 	}
 
-	public Cube getArea() {
+	public Cube getArea()
+	{
+
 		return this.area;
+
 	}
 
-	public Location getWarpLocation() {
+	public Location getWarpLocation()
+	{
+
 		return warp;
+
 	}
 
-	public void setWarpLocation(Location l) {
+	public void setWarpLocation( Location l )
+	{
+
 		warp = l;
+
 	}
 
-	public String getName() {
+	public String getName()
+	{
+
 		return name;
+
 	}
 
-	public boolean isEnabled() {
+	public boolean isEnabled()
+	{
+
 		return enabled;
+
 	}
 
-	public boolean toggleEnabled() {
+	public boolean toggleEnabled()
+	{
+
 		return enabled = !enabled;
+
 	}
 
-	public String getHook()	{
+	public String getHook()
+	{
+
 		return hook;
+
 	}
 
-	public void setHook(String h){
+	public void setHook( String h )
+	{
+
 		hook = h;
+
 	}
-	
-	public void setBlock(Material type, byte dta) {
+
+	public void setBlock( Material type, byte dta )
+	{
+
 		material = type.toString();
 		data = dta;
+
 	}
-	
-	public Material getBlockType() {
+
+	public Material getBlockType()
+	{
+
 		return Material.getMaterial(material);
+
 	}
-	
-	public void refill(){
-		for (Player p : Bukkit.getOnlinePlayers()) {
-			if (area.containsPoint(p.getLocation())) p.teleport(warp);
+
+	public void refill()
+	{
+
+		for (Player p : Bukkit.getOnlinePlayers())
+		{
+
+			if (area.containsPoint(p.getLocation()))
+				p.teleport(warp);
+
 		}
-		
-		setArea(area, Material.getMaterial(material),(byte) data);
-		
+
+		setArea(area, Material.getMaterial(material), (byte) data);
+
 		lastfill = Instant.now().getEpochSecond();
+
 	}
-	
-	public void setCooldownSeconds(long cd){
+
+	public void setCooldownSeconds( long cd )
+	{
+
 		cooldown = cd;
 		lastfill = Instant.now().getEpochSecond();
+
 	}
-	
-	public long getCooldownSeconds(){
+
+	public long getCooldownSeconds()
+	{
+
 		return cooldown;
+
 	}
-	
-	public long getCooldownRemainder(){
+
+	public long getCooldownRemainder()
+	{
+
 		return (cooldown + lastfill - (Instant.now().getEpochSecond()));
+
 	}
-	
-	public boolean isCooldownFinished(){
-		if (cooldown == 0) return false;
+
+	public boolean isCooldownFinished()
+	{
+
+		if (cooldown == 0)
+			return false;
 		return (Instant.now().getEpochSecond() - lastfill > cooldown);
+
 	}
-	
-	public long getLastRefill(){
+
+	public long getLastRefill()
+	{
+
 		return lastfill;
+
 	}
-	
-	private void setArea(Cube sel, Material type, byte data) {
+
+	private void setArea( Cube sel, Material type, byte data )
+	{
+
 		Location min = sel.getMinimumPoint();
 		Location max = sel.getMaximumPoint();
 		World world = min.getWorld();
-		
-		for (int x = min.getBlockX(); x <= max.getBlockX(); x ++) {
-			for (int y = min.getBlockY(); y <= max.getBlockY(); y ++) {
-				for (int z = min.getBlockZ(); z <= max.getBlockZ(); z ++) {
+
+		for (int x = min.getBlockX(); x <= max.getBlockX(); x++)
+		{
+
+			for (int y = min.getBlockY(); y <= max.getBlockY(); y++)
+			{
+
+				for (int z = min.getBlockZ(); z <= max.getBlockZ(); z++)
+				{
+
 					world.getBlockAt(x, y, z).setType(type);
+
 				}
+
 			}
+
 		}
+
 	}
 
 }

@@ -8,7 +8,8 @@ import com.gmail.Annarkwin.Platinum.API.Subcommand;
 import com.gmail.Annarkwin.Platinum.MMO.MMO;
 import com.gmail.Annarkwin.Platinum.MMO.Portal;
 
-public class PortalEnable implements Subcommand {
+public class PortalEnable implements Subcommand
+{
 
 	private String description = "Enable a portal";
 	private MainCommand main;
@@ -17,56 +18,94 @@ public class PortalEnable implements Subcommand {
 	private boolean playeronly = true;
 	private String usage = "/portal enable <portal>";
 
-	public PortalEnable(MainCommand maincommand) {
+	public PortalEnable( MainCommand maincommand )
+	{
+
 		main = maincommand;
+
 	}
 
 	@Override
-	public String getDescription() {
+	public String getDescription()
+	{
+
 		return description;
+
 	}
 
 	@Override
-	public MainCommand getMainCommand() {
+	public MainCommand getMainCommand()
+	{
+
 		return main;
+
 	}
 
 	@Override
-	public String getName() {
+	public String getName()
+	{
+
 		return name;
+
 	}
 
 	@Override
-	public String getPermission() {
+	public String getPermission()
+	{
+
 		return permission;
+
 	}
 
 	@Override
-	public String getUsage() {
+	public String getUsage()
+	{
+
 		return usage;
+
 	}
 
 	@Override
-	public boolean isPlayerOnly() {
+	public boolean isPlayerOnly()
+	{
+
 		return playeronly;
+
 	}
 
 	@Override
-	public void run(CommandSender sender, String[] args) {
+	public void run( CommandSender sender, String[] args )
+	{
+
 		Player p = (Player) sender;
 		Portal parg;
-		if (args.length < 2) {
+
+		if (args.length < 2)
+		{
+
 			p.sendMessage("§4[Error]:§f Enter the name of the portal");
 			return;
+
 		}
-		if ((parg = MMO.portal_manager.getPortal(args[1])) == null) {
+
+		if ((parg = MMO.portal_manager.getPortal(args[1])) == null)
+		{
+
 			p.sendMessage("§4[Error]:§f No portal with that name found");
 			return;
+
 		}
-		if (parg.isEnabled()) {
+
+		if (parg.isEnabled())
+		{
+
 			p.sendMessage("§4[Error]:§f That portal is already enabled");
 			return;
+
 		}
+
 		p.sendMessage("§2[Info]:§f Portal usability has been set to " + parg.toggleEnabled());
+
 	}
+
 }

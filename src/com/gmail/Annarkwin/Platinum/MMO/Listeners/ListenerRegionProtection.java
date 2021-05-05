@@ -1,5 +1,7 @@
 package com.gmail.Annarkwin.Platinum.MMO.Listeners;
 
+import org.bukkit.block.Block;
+import org.bukkit.block.Container;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
@@ -14,6 +16,7 @@ import org.bukkit.event.block.BlockPistonRetractEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.block.BlockSpreadEvent;
 import org.bukkit.event.block.EntityBlockFormEvent;
+import org.bukkit.event.block.BlockIgniteEvent.IgniteCause;
 import org.bukkit.event.entity.AreaEffectCloudApplyEvent;
 import org.bukkit.event.entity.EntityBreakDoorEvent;
 import org.bukkit.event.entity.EntityCombustByEntityEvent;
@@ -39,8 +42,11 @@ import org.bukkit.event.vehicle.VehicleEntityCollisionEvent;
 import org.bukkit.event.world.PortalCreateEvent;
 
 import com.gmail.Annarkwin.Platinum.API.Events.PlayerRightClickBlockEvent;
+import com.gmail.Annarkwin.Platinum.MMO.MMO;
+import com.gmail.Annarkwin.Platinum.MMO.Region;
 
-public class ListenerRegionProtection implements Listener {
+public class ListenerRegionProtection implements Listener
+{
 
 	// TODO TEST ALL AND DEBUG
 
@@ -48,59 +54,100 @@ public class ListenerRegionProtection implements Listener {
 	// A: Prevent break in disallowed zones
 	// B: Allow quarry block breaking
 	// ---------------------------------------
-	//TODO Change to PlayerMineEvent
+	// TODO Change to PlayerMineEvent
 	@EventHandler(ignoreCancelled = false)
-	public void breakBlockListener(BlockBreakEvent e) {
-		
+	public void breakBlockListener( BlockBreakEvent e )
+	{
+
+		Region r = MMO.region_manager.getRegion(e.getBlock().getLocation());
+
+		if (r != null)
+			if (!r.isAllowed(e.getPlayer()))
+				e.setCancelled(true);
+
 	}
 
 	// ---------------------------------------
 	// A: Prevent place in disallowed zones
 	// ---------------------------------------
 	@EventHandler(ignoreCancelled = false)
-	public void placeBlockListener(BlockPlaceEvent e) {
-		
+	public void placeBlockListener( BlockPlaceEvent e )
+	{
+
+		Region r = MMO.region_manager.getRegion(e.getBlock().getLocation());
+
+		if (r != null)
+			if (!r.isAllowed(e.getPlayer()))
+				e.setCancelled(true);
+
 	}
 
 	// ---------------------------------------
 	// A: Prevent place in disallowed zones
 	// ---------------------------------------
 	@EventHandler(ignoreCancelled = false)
-	public void placeMultiBlockListener(BlockMultiPlaceEvent e) {
-		
+	public void placeMultiBlockListener( BlockMultiPlaceEvent e )
+	{
+
+		Region r = MMO.region_manager.getRegion(e.getBlock().getLocation());
+
+		if (r != null)
+			if (!r.isAllowed(e.getPlayer()))
+				e.setCancelled(true);
+
 	}
 
 	// ---------------------------------------
 	// A: Prevent block burn
 	// ---------------------------------------
 	@EventHandler(ignoreCancelled = false)
-	public void burnBlockListener(BlockBurnEvent e) {
-		
+	public void burnBlockListener( BlockBurnEvent e )
+	{
+
+		Region r = MMO.region_manager.getRegion(e.getBlock().getLocation());
+
 	}
 
 	// ---------------------------------------
 	// A: Prevent firespread
-	// B: Prevent flint & steel use in protected areas 
+	// B: Prevent flint & steel use in protected areas
 	// ---------------------------------------
 	@EventHandler(ignoreCancelled = false)
-	public void igniteBlockListener(BlockIgniteEvent e) {
-		
+	public void igniteBlockListener( BlockIgniteEvent e )
+	{
+
+		Region r = MMO.region_manager.getRegion(e.getBlock().getLocation());
+
+		if (r != null && e.getCause() == IgniteCause.FLINT_AND_STEEL)
+			if (!r.isAllowed(e.getPlayer()))
+				e.setCancelled(true);
+
 	}
 
 	// ---------------------------------------
 	// A: Prevent block explosion
 	// ---------------------------------------
 	@EventHandler(ignoreCancelled = false)
-	public void explodeBlockListener(BlockExplodeEvent e) {
-		
+	public void explodeBlockListener( BlockExplodeEvent e )
+	{
+
+		Region r = MMO.region_manager.getRegion(e.getBlock().getLocation());
+
 	}
 
 	// ---------------------------------------
 	// A: Honestly no clue what this does
 	// ---------------------------------------
 	@EventHandler(ignoreCancelled = false)
-	public void fromtoBlockListener(BlockFromToEvent e) {
-		
+	public void fromtoBlockListener( BlockFromToEvent e )
+	{
+
+		Region from = MMO.region_manager.getRegion(e.getBlock().getLocation());
+		Region to = MMO.region_manager.getRegion(e.getToBlock().getLocation());
+
+		if (from != to)
+			e.setCancelled(true);
+
 	}
 
 	// ---------------------------------------
@@ -109,7 +156,10 @@ public class ListenerRegionProtection implements Listener {
 	// C: Prevent zone growth if zone-growth disabled
 	// ---------------------------------------
 	@EventHandler(ignoreCancelled = false)
-	public void growBlockListener(BlockGrowEvent e) {
+	public void growBlockListener( BlockGrowEvent e )
+	{
+
+		Region r = MMO.region_manager.getRegion(e.getBlock().getLocation());
 
 	}
 
@@ -117,105 +167,47 @@ public class ListenerRegionProtection implements Listener {
 	// A: Prevent push into/out of zones
 	// ---------------------------------------
 	@EventHandler(ignoreCancelled = false)
-	public void pistonExtendBlockListener(BlockPistonExtendEvent e) {
-		
+	public void pistonExtendBlockListener( BlockPistonExtendEvent e )
+	{
+
+		Region r = MMO.region_manager.getRegion(e.getBlock().getLocation());
+
+		for (Block b : e.getBlocks())
+		{
+
+			if (MMO.region_manager.getRegion(b.getLocation()) != r)
+			{
+
+				e.setCancelled(true);
+				return;
+
+			}
+
+		}
+
 	}
 
 	// ---------------------------------------
 	// A: Prevent pull into/out of zones
 	// ---------------------------------------
 	@EventHandler(ignoreCancelled = false)
-	public void pistonRetractBlockListener(BlockPistonRetractEvent e) {
-		
-	}
+	public void pistonRetractBlockListener( BlockPistonRetractEvent e )
+	{
 
-	// ---------------------------------------
-	// A: 
-	// B:
-	// ---------------------------------------
-	@EventHandler(ignoreCancelled = false)
-	public void blockSpreadListener(BlockSpreadEvent e) {
-		
-	}
+		Region r = MMO.region_manager.getRegion(e.getBlock().getLocation());
 
-	// ---------------------------------------
-	// A: 
-	// B:
-	// ---------------------------------------
-	@EventHandler(ignoreCancelled = false)
-	public void eFormBlockListener(EntityBlockFormEvent e) {
+		for (Block b : e.getBlocks())
+		{
 
-	}
+			if (MMO.region_manager.getRegion(b.getLocation()) != r)
+			{
 
-	// ---------------------------------------
-	// A: 
-	// B:
-	// ---------------------------------------
-	@EventHandler(ignoreCancelled = false)
-	public void pInteractEntityListener(PlayerInteractEntityEvent e) {
-		
-	}
+				e.setCancelled(true);
+				return;
 
-	// ---------------------------------------
-	// A: 
-	// B: 
-	// ---------------------------------------
-	@EventHandler(ignoreCancelled = false)
-	public void pArmorStandListener(PlayerArmorStandManipulateEvent e) {
-		
-	}
+			}
 
-	// ---------------------------------------
-	// A:
-	// B:
-	// ---------------------------------------
-	@EventHandler(ignoreCancelled = false)
-	public void pBucketListener(PlayerBucketFillEvent e) {
-		
-	}
-
-	// ---------------------------------------
-	// A:
-	// B:
-	// ---------------------------------------
-	@EventHandler(ignoreCancelled = false)
-	public void pBucketListener(PlayerBucketEmptyEvent e) {
-		
-	}
-
-	// ---------------------------------------
-	// A:
-	// B:
-	// ---------------------------------------
-	@EventHandler(ignoreCancelled = false)
-	public void pShearListener(PlayerShearEntityEvent e) {
-		
-	}
-
-	// ---------------------------------------
-	// A:
-	// B:
-	// ---------------------------------------
-	@EventHandler(ignoreCancelled = false)
-	public void pUnleashListener(PlayerUnleashEntityEvent e) {
-		
-	}
-
-	// ---------------------------------------
-	// A:
-	// B:
-	// ---------------------------------------
-	@EventHandler(ignoreCancelled = false)
-	public void pLeashListener(PlayerLeashEntityEvent e) {
-		
-	}
-
-	// ---------------------------------------
-	// A:
-	// B:
-	// ---------------------------------------
-	@EventHandler(ignoreCancelled = false)
-	public void areaEffectCloudListener(AreaEffectCloudApplyEvent e) {
+		}
 
 	}
 
@@ -224,25 +216,14 @@ public class ListenerRegionProtection implements Listener {
 	// B:
 	// ---------------------------------------
 	@EventHandler(ignoreCancelled = false)
-	public void eDoorBreakListener(EntityBreakDoorEvent e) {
-		
-	}
+	public void blockSpreadListener( BlockSpreadEvent e )
+	{
 
-	// ---------------------------------------
-	// A: Prevent Flame & Fire Aspect combustion for protected animals/villagers/players
-	// B:
-	// ---------------------------------------
-	@EventHandler(ignoreCancelled = false)
-	public void eCombustListener(EntityCombustByEntityEvent e) {
-		
-	}
+		Region from = MMO.region_manager.getRegion(e.getSource().getLocation());
+		Region to = MMO.region_manager.getRegion(e.getBlock().getLocation());
 
-	// ---------------------------------------
-	// A:
-	// B:
-	// ---------------------------------------
-	@EventHandler(ignoreCancelled = false)
-	public void eDamageListener(EntityDamageByBlockEvent e) {
+		if (from != to)
+			e.setCancelled(true);
 
 	}
 
@@ -251,7 +232,13 @@ public class ListenerRegionProtection implements Listener {
 	// B:
 	// ---------------------------------------
 	@EventHandler(ignoreCancelled = false)
-	public void eDamageListener(EntityDamageByEntityEvent e) {
+	public void eFormBlockListener( EntityBlockFormEvent e )
+	{
+
+		Region r = MMO.region_manager.getRegion(e.getBlock().getLocation());
+
+		if (r != null)
+			e.setCancelled(true);
 
 	}
 
@@ -260,7 +247,8 @@ public class ListenerRegionProtection implements Listener {
 	// B:
 	// ---------------------------------------
 	@EventHandler(ignoreCancelled = false)
-	public void eDamageListener(EntityDamageEvent e) {
+	public void pInteractEntityListener( PlayerInteractEntityEvent e )
+	{
 
 	}
 
@@ -269,25 +257,8 @@ public class ListenerRegionProtection implements Listener {
 	// B:
 	// ---------------------------------------
 	@EventHandler(ignoreCancelled = false)
-	public void eExplodeListener(EntityExplodeEvent e) {
-		
-	}
-
-	// ---------------------------------------
-	// A:
-	// B:
-	// ---------------------------------------
-	@EventHandler(ignoreCancelled = false)
-	public void eInteractListener(EntityInteractEvent e) {
-		
-	}
-
-	// ---------------------------------------
-	// A:
-	// B:
-	// ---------------------------------------
-	@EventHandler(ignoreCancelled = false)
-	public void lingeringSplashListener(LingeringPotionSplashEvent e) {
+	public void pArmorStandListener( PlayerArmorStandManipulateEvent e )
+	{
 
 	}
 
@@ -296,7 +267,10 @@ public class ListenerRegionProtection implements Listener {
 	// B:
 	// ---------------------------------------
 	@EventHandler(ignoreCancelled = false)
-	public void pigZapListener(PigZapEvent e) {
+	public void pBucketListener( PlayerBucketFillEvent e )
+	{
+
+		Region r = MMO.region_manager.getRegion(e.getBlock().getLocation());
 
 	}
 
@@ -305,7 +279,10 @@ public class ListenerRegionProtection implements Listener {
 	// B:
 	// ---------------------------------------
 	@EventHandler(ignoreCancelled = false)
-	public void potionSplashListener(PotionSplashEvent e) {
+	public void pBucketListener( PlayerBucketEmptyEvent e )
+	{
+
+		Region r = MMO.region_manager.getRegion(e.getBlock().getLocation());
 
 	}
 
@@ -314,7 +291,8 @@ public class ListenerRegionProtection implements Listener {
 	// B:
 	// ---------------------------------------
 	@EventHandler(ignoreCancelled = false)
-	public void projectileHitListener(ProjectileHitEvent e) {
+	public void pShearListener( PlayerShearEntityEvent e )
+	{
 
 	}
 
@@ -323,7 +301,8 @@ public class ListenerRegionProtection implements Listener {
 	// B:
 	// ---------------------------------------
 	@EventHandler(ignoreCancelled = false)
-	public void vehicleEntityCollisionListener(VehicleEntityCollisionEvent e) {
+	public void pUnleashListener( PlayerUnleashEntityEvent e )
+	{
 
 	}
 
@@ -332,7 +311,8 @@ public class ListenerRegionProtection implements Listener {
 	// B:
 	// ---------------------------------------
 	@EventHandler(ignoreCancelled = false)
-	public void vehicleCreateListener(VehicleCreateEvent e) {
+	public void pLeashListener( PlayerLeashEntityEvent e )
+	{
 
 	}
 
@@ -341,7 +321,8 @@ public class ListenerRegionProtection implements Listener {
 	// B:
 	// ---------------------------------------
 	@EventHandler(ignoreCancelled = false)
-	public void vehicleDamageListener(VehicleDamageEvent e) {
+	public void areaEffectCloudListener( AreaEffectCloudApplyEvent e )
+	{
 
 	}
 
@@ -350,7 +331,21 @@ public class ListenerRegionProtection implements Listener {
 	// B:
 	// ---------------------------------------
 	@EventHandler(ignoreCancelled = false)
-	public void portalCreateListener(PortalCreateEvent e) {
+	public void eDoorBreakListener( EntityBreakDoorEvent e )
+	{
+
+		Region r = MMO.region_manager.getRegion(e.getBlock().getLocation());
+
+	}
+
+	// ---------------------------------------
+	// A: Prevent Flame & Fire Aspect combustion for protected
+	// animals/villagers/players
+	// B:
+	// ---------------------------------------
+	@EventHandler(ignoreCancelled = false)
+	public void eCombustListener( EntityCombustByEntityEvent e )
+	{
 
 	}
 
@@ -359,8 +354,146 @@ public class ListenerRegionProtection implements Listener {
 	// B:
 	// ---------------------------------------
 	@EventHandler(ignoreCancelled = false)
-	public void pInteractListener(PlayerRightClickBlockEvent e) {
-		
+	public void eDamageListener( EntityDamageByBlockEvent e )
+	{
+
+	}
+
+	// ---------------------------------------
+	// A:
+	// B:
+	// ---------------------------------------
+	@EventHandler(ignoreCancelled = false)
+	public void eDamageListener( EntityDamageByEntityEvent e )
+	{
+
+	}
+
+	// ---------------------------------------
+	// A:
+	// B:
+	// ---------------------------------------
+	@EventHandler(ignoreCancelled = false)
+	public void eDamageListener( EntityDamageEvent e )
+	{
+
+	}
+
+	// ---------------------------------------
+	// A:
+	// B:
+	// ---------------------------------------
+	@EventHandler(ignoreCancelled = false)
+	public void eExplodeListener( EntityExplodeEvent e )
+	{
+
+	}
+
+	// ---------------------------------------
+	// A:
+	// B:
+	// ---------------------------------------
+	@EventHandler(ignoreCancelled = false)
+	public void eInteractListener( EntityInteractEvent e )
+	{
+
+	}
+
+	// ---------------------------------------
+	// A:
+	// B:
+	// ---------------------------------------
+	@EventHandler(ignoreCancelled = false)
+	public void lingeringSplashListener( LingeringPotionSplashEvent e )
+	{
+
+	}
+
+	// ---------------------------------------
+	// A:
+	// B:
+	// ---------------------------------------
+	@EventHandler(ignoreCancelled = false)
+	public void pigZapListener( PigZapEvent e )
+	{
+
+	}
+
+	// ---------------------------------------
+	// A:
+	// B:
+	// ---------------------------------------
+	@EventHandler(ignoreCancelled = false)
+	public void potionSplashListener( PotionSplashEvent e )
+	{
+
+	}
+
+	// ---------------------------------------
+	// A:
+	// B:
+	// ---------------------------------------
+	@EventHandler(ignoreCancelled = false)
+	public void projectileHitListener( ProjectileHitEvent e )
+	{
+
+	}
+
+	// ---------------------------------------
+	// A:
+	// B:
+	// ---------------------------------------
+	@EventHandler(ignoreCancelled = false)
+	public void vehicleEntityCollisionListener( VehicleEntityCollisionEvent e )
+	{
+
+	}
+
+	// ---------------------------------------
+	// A:
+	// B:
+	// ---------------------------------------
+	@EventHandler(ignoreCancelled = false)
+	public void vehicleCreateListener( VehicleCreateEvent e )
+	{
+
+	}
+
+	// ---------------------------------------
+	// A:
+	// B:
+	// ---------------------------------------
+	@EventHandler(ignoreCancelled = false)
+	public void vehicleDamageListener( VehicleDamageEvent e )
+	{
+
+	}
+
+	// ---------------------------------------
+	// A:
+	// B:
+	// ---------------------------------------
+	@EventHandler(ignoreCancelled = false)
+	public void portalCreateListener( PortalCreateEvent e )
+	{
+
+	}
+
+	// ---------------------------------------
+	// A:
+	// B:
+	// ---------------------------------------
+	@EventHandler(ignoreCancelled = false)
+	public void pInteractListener( PlayerRightClickBlockEvent e )
+	{
+
+		Region r = MMO.region_manager.getRegion(e.getBlock().getLocation());
+
+		if (r != null)
+			if (!r.isAllowed(e.getPlayer()))
+				if (e.getBlock().getState() instanceof Container)
+					e.setCancelled(true);
+
 	}
 
 }

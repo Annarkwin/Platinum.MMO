@@ -8,7 +8,8 @@ import com.gmail.Annarkwin.Platinum.API.Subcommand;
 import com.gmail.Annarkwin.Platinum.MMO.MMO;
 import com.gmail.Annarkwin.Platinum.MMO.Quarry;
 
-public class QuarryCooldown implements Subcommand {
+public class QuarryCooldown implements Subcommand
+{
 
 	private String description = "Set cooldown";
 	private MainCommand main;
@@ -17,70 +18,121 @@ public class QuarryCooldown implements Subcommand {
 	private boolean playeronly = true;
 	private String usage = "/quarry cooldown <quarry> <seconds>";
 
-	public QuarryCooldown(MainCommand maincommand) {
+	public QuarryCooldown( MainCommand maincommand )
+	{
+
 		main = maincommand;
+
 	}
 
 	@Override
-	public String getDescription() {
+	public String getDescription()
+	{
+
 		return description;
+
 	}
 
-	public int getInt(String s) {
+	public int getInt( String s )
+	{
+
 		return Integer.parseInt(s);
+
 	}
 
 	@Override
-	public MainCommand getMainCommand() {
+	public MainCommand getMainCommand()
+	{
+
 		return main;
+
 	}
 
 	@Override
-	public String getName() {
+	public String getName()
+	{
+
 		return name;
+
 	}
 
 	@Override
-	public String getPermission() {
+	public String getPermission()
+	{
+
 		return permission;
+
 	}
 
 	@Override
-	public String getUsage() {
+	public String getUsage()
+	{
+
 		return usage;
+
 	}
 
-	public boolean isInt(String s) {
-		try {
+	public boolean isInt( String s )
+	{
+
+		try
+		{
+
 			Integer.parseInt(s);
 			return true;
-		} catch (NumberFormatException e) {
-			return false;
+
 		}
+		catch (NumberFormatException e)
+		{
+
+			return false;
+
+		}
+
 	}
 
 	@Override
-	public boolean isPlayerOnly() {
+	public boolean isPlayerOnly()
+	{
+
 		return playeronly;
+
 	}
 
 	@Override
-	public void run(CommandSender sender, String[] args) {
+	public void run( CommandSender sender, String[] args )
+	{
+
 		Player p = (Player) sender;
 		Quarry qarg;
-		if (args.length < 3) {
+
+		if (args.length < 3)
+		{
+
 			p.sendMessage("§4[Error]:§f Enter the name of the quarry then the time in minutes");
 			return;
+
 		}
-		if ((qarg = MMO.quarry_manager.getQuarry(args[1])) == null) {
+
+		if ((qarg = MMO.quarry_manager.getQuarry(args[1])) == null)
+		{
+
 			p.sendMessage("§4[Error]:§f No quarry with that name found");
 			return;
+
 		}
-		if (!isInt(args[2])) {
+
+		if (!isInt(args[2]))
+		{
+
 			p.sendMessage("§4[Error]:§f Invalid time");
 			return;
+
 		}
+
 		qarg.setCooldownSeconds(getInt(args[2]));
 		p.sendMessage("§2[Info]:§f Quarry timer set");
+
 	}
+
 }

@@ -1,55 +1,105 @@
 package com.gmail.Annarkwin.Platinum.MMO.Commands.Region;
 
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
 import com.gmail.Annarkwin.Platinum.API.MainCommand;
 import com.gmail.Annarkwin.Platinum.API.Subcommand;
+import com.gmail.Annarkwin.Platinum.MMO.MMO;
+import com.gmail.Annarkwin.Platinum.MMO.Region;
 
-public class RegionMonsters implements Subcommand {
+public class RegionMonsters implements Subcommand
+{
 
-	private String description = "Toggle pvp in zone";
+	private String description = "Toggle monster spawning";
 	private MainCommand main;
-	private String name = "pvp";
-	private String permission = "platinum.region.pvp";
+	private String name = "monsters";
+	private String permission = "platinum.region.monsters";
 	private boolean playeronly = true;
-	private String usage = "/region pvp";
+	private String usage = "/region monsters";
 
-	public RegionMonsters(MainCommand maincommand) {
+	public RegionMonsters( MainCommand maincommand )
+	{
+
 		main = maincommand;
+
 	}
 
 	@Override
-	public String getDescription() {
+	public String getDescription()
+	{
+
 		return description;
+
 	}
 
 	@Override
-	public MainCommand getMainCommand() {
+	public MainCommand getMainCommand()
+	{
+
 		return main;
+
 	}
 
 	@Override
-	public String getName() {
+	public String getName()
+	{
+
 		return name;
+
 	}
 
 	@Override
-	public String getPermission() {
+	public String getPermission()
+	{
+
 		return permission;
+
 	}
 
 	@Override
-	public String getUsage() {
+	public String getUsage()
+	{
+
 		return usage;
+
 	}
 
 	@Override
-	public boolean isPlayerOnly() {
+	public boolean isPlayerOnly()
+	{
+
 		return playeronly;
+
 	}
 
 	@Override
-	public void run(CommandSender sender, String[] args) {
-		
+	public void run( CommandSender sender, String[] args )
+	{
+
+		Player p = (Player) sender;
+		Region r = MMO.region_manager.getRegion(p.getLocation());
+
+		if (r == null)
+		{
+
+			p.sendMessage("§4[Error]:§f You are not standing in a region");
+
+		}
+		else if (r.isOwner(p))
+		{
+
+			r.setMonsterSpawning(!r.isMonsterSpawning());
+			p.sendMessage("§2[Info]:§f Region Monster Spawning has been set to " + r.isMonsterSpawning());
+
+		}
+		else
+		{
+
+			p.sendMessage("§4[Error]:§f You aren't the owner of this region");
+
+		}
+
 	}
+
 }

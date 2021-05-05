@@ -12,21 +12,35 @@ import com.gmail.Annarkwin.Platinum.API.TickerEvent.TickerEventType;
 import com.gmail.Annarkwin.Platinum.MMO.MMO;
 import com.gmail.Annarkwin.Platinum.MMO.Portal;
 
-public class ListenerPortals implements Listener {
-	
-	//Teleport player when entering a portal
-	@EventHandler (ignoreCancelled = false)
-	public void portalEvent(TickerEvent event){
-		if (event.getType() != TickerEventType.PORTAL) return;
-		for (Player p : Bukkit.getOnlinePlayers()){
+public class ListenerPortals implements Listener
+{
+
+	// Teleport player when entering a portal
+	@EventHandler(ignoreCancelled = false)
+	public void portalEvent( TickerEvent event )
+	{
+
+		if (event.getType() != TickerEventType.PORTAL)
+			return;
+
+		for (Player p : Bukkit.getOnlinePlayers())
+		{
+
 			Portal portal = MMO.portal_manager.getPortal(p.getLocation());
-			if (portal == null) continue;
-			if (!portal.isEnabled()) continue;
-			if (!portal.getHook().equals("") && !p.hasPermission(portal.getHook())) continue;
-				
+			if (portal == null)
+				continue;
+			if (!portal.isEnabled())
+				continue;
+			if (!portal.getHook().equals("") && !p.hasPermission(portal.getHook()))
+				continue;
+
 			p.teleport(portal.getWarpLocation());
 			p.sendMessage("§2[Info]:§f Teleported to " + portal.getWarp().getName());
-			Bukkit.getLogger().log(Level.INFO, "Portal Event: " + p.getName() + " has gone through " + portal.getName() + " to " + portal.getWarp().getName());
+			Bukkit.getLogger().log(Level.INFO, "Portal Event: " + p.getName() + " has gone through " + portal.getName()
+					+ " to " + portal.getWarp().getName());
+
 		}
+
 	}
+
 }

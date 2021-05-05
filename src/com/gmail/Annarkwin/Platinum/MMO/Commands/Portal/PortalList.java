@@ -8,7 +8,8 @@ import com.gmail.Annarkwin.Platinum.API.Subcommand;
 import com.gmail.Annarkwin.Platinum.MMO.MMO;
 import com.gmail.Annarkwin.Platinum.MMO.Portal;
 
-public class PortalList implements Subcommand {
+public class PortalList implements Subcommand
+{
 
 	private String description = "List portals";
 	private MainCommand main;
@@ -17,56 +18,89 @@ public class PortalList implements Subcommand {
 	private boolean playeronly = true;
 	private String usage = "/portal list";
 
-	public PortalList(MainCommand maincommand) {
+	public PortalList( MainCommand maincommand )
+	{
+
 		main = maincommand;
+
 	}
 
 	@Override
-	public String getDescription() {
+	public String getDescription()
+	{
+
 		return description;
+
 	}
 
 	@Override
-	public MainCommand getMainCommand() {
+	public MainCommand getMainCommand()
+	{
+
 		return main;
+
 	}
 
 	@Override
-	public String getName() {
+	public String getName()
+	{
+
 		return name;
+
 	}
 
 	@Override
-	public String getPermission() {
+	public String getPermission()
+	{
+
 		return permission;
+
 	}
 
 	@Override
-	public String getUsage() {
+	public String getUsage()
+	{
+
 		return usage;
+
 	}
 
 	@Override
-	public boolean isPlayerOnly() {
+	public boolean isPlayerOnly()
+	{
+
 		return playeronly;
+
 	}
 
 	@Override
-	public void run(CommandSender sender, String[] args) {
+	public void run( CommandSender sender, String[] args )
+	{
+
 		Player p = (Player) sender;
 		String message = "";
-		
+
 		p.sendMessage("§2[Info]:§f Allowed portals:");
-		for (Portal ptl : MMO.portal_manager.getPortals()) {
-			if (ptl.getHook().equalsIgnoreCase("") || p.hasPermission(ptl.getHook())) {
+
+		for (Portal ptl : MMO.portal_manager.getPortals())
+		{
+
+			if (ptl.getHook().equalsIgnoreCase("") || p.hasPermission(ptl.getHook()))
+			{
+
 				message = " - " + ptl.getName();
-				
+
 				if (!ptl.isEnabled())
 					message = "§4" + message;
-				
+
 				p.sendMessage(message);
+
 			}
+
 		}
+
 		p.sendMessage("---");
+
 	}
+
 }
