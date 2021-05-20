@@ -15,7 +15,7 @@ public class CommandRegion implements CommandExecutor , MainCommand
 	{
 			new RegionGive(this), new RegionHelp(this), new RegionNew(this), new RegionRemove(this),
 			new RegionInfo(this), new RegionAllow(this), new RegionAllowed(this), new RegionAnimals(this),
-			new RegionGo(this), new RegionKick(this), new RegionList(this), new RegionLock(this),
+			new RegionGrow(this), new RegionGo(this), new RegionKick(this), new RegionList(this), new RegionLock(this),
 			new RegionMonsters(this), new RegionPublic(this), new RegionPVP(this), new RegionSetWarp(this)
 	};
 

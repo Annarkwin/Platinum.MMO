@@ -30,6 +30,7 @@ public class Region implements ConfigurationSerializable , Comparable<Region>
 	private boolean ispvp = false;
 	private boolean ismonsterspawning = true;
 	private boolean isanimalspawning = true;
+	private boolean isgrowing = true;
 
 	public Region( Cube area, Player owner )
 	{
@@ -253,6 +254,20 @@ public class Region implements ConfigurationSerializable , Comparable<Region>
 	{
 
 		isanimalspawning = arg;
+
+	}
+
+	public boolean isGrowing()
+	{
+
+		return isgrowing;
+
+	}
+
+	public void setGrowing( boolean arg )
+	{
+
+		isgrowing = arg;
 
 	}
 
