@@ -118,7 +118,7 @@ public class InventoryDrop implements Subcommand
 			if (target != null)
 			{
 
-				Block b = p.getTargetBlockExact(5);
+				Block b = p.getTargetBlockExact(5).getRelative(BlockFace.UP);
 
 				if (b != null)
 				{
@@ -129,8 +129,7 @@ public class InventoryDrop implements Subcommand
 						if (target.getInventory().getItem(i) != null)
 						{
 
-							b.getWorld().dropItem(b.getRelative(BlockFace.UP).getLocation(),
-									target.getInventory().getItem(i));
+							b.getWorld().dropItem(b.getLocation(), target.getInventory().getItem(i));
 							target.getInventory().clear(i);
 
 						}
