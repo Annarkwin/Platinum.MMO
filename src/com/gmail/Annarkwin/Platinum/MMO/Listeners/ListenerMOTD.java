@@ -15,7 +15,7 @@ public class ListenerMOTD implements Listener
 		e.getPlayer().sendMessage("§2 - Welcome to the Casual Cult Server! -");
 		e.getPlayer().sendMessage("");
 		e.getPlayer().sendMessage("§6 - This is a survival server and cheating is not allowed.");
-		e.getPlayer().sendMessage("§6 - I'm working on region protection, though creation and modifications to them are only allowed by an Admin.");
+		e.getPlayer().sendMessage("§6 - Be sure to check the feature wall at spawn regularly! I'm very busy :)");
 
 	}
 
