@@ -9,8 +9,12 @@ import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.RenderType;
 import org.bukkit.scoreboard.Scoreboard;
 
+import com.gmail.Annarkwin.Platinum.API.ExperienceManager;
 import com.gmail.Annarkwin.Platinum.API.TickerEvent;
 import com.gmail.Annarkwin.Platinum.API.TickerEvent.TickerEventType;
+import com.gmail.Annarkwin.Platinum.MMO.MMO;
+import com.gmail.Annarkwin.Platinum.MMO.Quarry;
+import com.gmail.Annarkwin.Platinum.MMO.Region;
 
 public class ListenerScoreboardUpdate implements Listener
 {
@@ -27,16 +31,54 @@ public class ListenerScoreboardUpdate implements Listener
 
 			// Make a new scoreboard for the player
 			Scoreboard scoreboard = p.getScoreboard();
-			if (scoreboard.getObjective("Information") != null)
-				scoreboard.getObjective("Information").unregister();
+			Objective objective = scoreboard.getObjective("Information");
+			Region r = MMO.region_manager.getRegion(p.getLocation());
+			Quarry q = MMO.quarry_manager.getQuarry(p.getLocation());
 
-			Objective objective = scoreboard.registerNewObjective("Information", "", "Information", RenderType.HEARTS);
-			objective.setDisplaySlot(DisplaySlot.SIDEBAR);
-			objective.getScore("§0§fCurrent Biome: " + p.getWorld().getBiome(p.getLocation().getBlockX(),
-					p.getLocation().getBlockY(), p.getLocation().getBlockZ())).setScore(0);
-			objective.getScore("§0§fCoins: 4,433,812").setScore(0);
-			objective.getScore("§0§fBounty: 2342 Coins").setScore(0);
-			p.setScoreboard(scoreboard);
+			if (scoreboard == Bukkit.getScoreboardManager().getMainScoreboard())
+			{
+
+				scoreboard = Bukkit.getScoreboardManager().getNewScoreboard();
+				p.setScoreboard(scoreboard);
+
+			}
+
+			for (String s : scoreboard.getEntries())
+			{
+
+				scoreboard.resetScores(s);
+
+			}
+
+			if (scoreboard.getObjective("Information") == null)
+			{
+
+				objective = scoreboard.registerNewObjective("Information", "", "Information", RenderType.HEARTS);
+				objective.setDisplaySlot(DisplaySlot.SIDEBAR);
+
+			}
+
+			// Show current exp
+			objective.getScore("§0§2" + ExperienceManager.getTotalExperience(p) + "§f experience").setScore(0);
+
+			// Show current zone owner
+			if (r != null)
+			{
+
+				objective.getScore("§1§fRegion: §2" + Bukkit.getOfflinePlayer(r.getOwner()).getName() + "§f's")
+						.setScore(0);
+
+				if (r.isLocked())
+					objective.getScore("§2§fRegion is §fLocked").setScore(0);
+
+				if (r.isPVP())
+					objective.getScore("§3§fRegion is §4PVP").setScore(0);
+
+			}
+
+			// Show current zone owner
+			if (q != null)
+				objective.getScore("§2§fQuarry: §2" + q.getName() + "§f").setScore(0);
 
 		}
 
