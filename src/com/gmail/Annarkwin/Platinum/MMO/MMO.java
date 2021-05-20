@@ -14,6 +14,7 @@ import com.gmail.Annarkwin.Platinum.MMO.Commands.Portal.CommandPortal;
 import com.gmail.Annarkwin.Platinum.MMO.Commands.Quarry.CommandQuarry;
 import com.gmail.Annarkwin.Platinum.MMO.Commands.Region.CommandRegion;
 import com.gmail.Annarkwin.Platinum.MMO.Commands.Spawn.CommandSpawn;
+import com.gmail.Annarkwin.Platinum.MMO.Commands.Sudo.CommandSudo;
 import com.gmail.Annarkwin.Platinum.MMO.Commands.Test.CommandTest;
 import com.gmail.Annarkwin.Platinum.MMO.Commands.Warp.CommandWarp;
 import com.gmail.Annarkwin.Platinum.MMO.DataLibrary.PortalManager;
@@ -21,6 +22,7 @@ import com.gmail.Annarkwin.Platinum.MMO.DataLibrary.QuarryManager;
 import com.gmail.Annarkwin.Platinum.MMO.DataLibrary.RegionManager;
 import com.gmail.Annarkwin.Platinum.MMO.DataLibrary.UserManager;
 import com.gmail.Annarkwin.Platinum.MMO.DataLibrary.WarpManager;
+import com.gmail.Annarkwin.Platinum.MMO.Listeners.ListenerChat;
 import com.gmail.Annarkwin.Platinum.MMO.Listeners.ListenerCrops;
 import com.gmail.Annarkwin.Platinum.MMO.Listeners.ListenerGameChanger;
 import com.gmail.Annarkwin.Platinum.MMO.Listeners.ListenerMOTD;
@@ -61,7 +63,7 @@ public class MMO extends JavaPlugin
 		// Initialize update event
 		TickerEvent.startTicker(this, 100L, TickerEventType.QUARRY_FILL);
 		TickerEvent.startTicker(this, 4L, TickerEventType.PORTAL);
-		// TickerEvent.startTicker(this, 20L, TickerEventType.SCOREBOARD_UPDATE);
+		TickerEvent.startTicker(this, 20L, TickerEventType.SCOREBOARD_UPDATE);
 
 	}
 
@@ -99,6 +101,7 @@ public class MMO extends JavaPlugin
 		getCommand("Quarry").setExecutor(new CommandQuarry());
 		getCommand("Region").setExecutor(new CommandRegion());
 		getCommand("Spawn").setExecutor(new CommandSpawn());
+		getCommand("Sudo").setExecutor(new CommandSudo());
 		getCommand("Test").setExecutor(new CommandTest());
 		getCommand("Warp").setExecutor(new CommandWarp());
 
@@ -108,6 +111,7 @@ public class MMO extends JavaPlugin
 	{
 
 		getServer().getPluginManager().registerEvents(new RegisterAPIEvents(), this);
+		getServer().getPluginManager().registerEvents(new ListenerChat(), this);
 		getServer().getPluginManager().registerEvents(new ListenerCrops(), this);
 		getServer().getPluginManager().registerEvents(new ListenerGameChanger(), this);
 		getServer().getPluginManager().registerEvents(new ListenerMOTD(), this);
