@@ -15,7 +15,6 @@ import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 
 
 import org.bukkit.event.entity.EntityExplodeEvent;
-import org.bukkit.event.entity.EntityInteractEvent;
 import org.bukkit.event.entity.EntitySpawnEvent;
 
 public class ListenerGameChanger implements Listener

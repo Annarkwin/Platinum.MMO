@@ -73,6 +73,7 @@ public class ListenerScoreboardUpdate implements Listener
 
 				if (r.isPVP())
 					objective.getScore("§3§fRegion is §4PVP").setScore(0);
+				
 
 			}
 

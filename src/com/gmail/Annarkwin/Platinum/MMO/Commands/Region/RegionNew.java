@@ -3,80 +3,25 @@ package com.gmail.Annarkwin.Platinum.MMO.Commands.Region;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import com.gmail.Annarkwin.Platinum.API.MainCommand;
-import com.gmail.Annarkwin.Platinum.API.Subcommand;
+import com.gmail.Annarkwin.Platinum.API.PlatinumCommand;
 import com.gmail.Annarkwin.Platinum.MMO.MMO;
 import com.gmail.Annarkwin.Platinum.MMO.Selection;
 import com.gmail.Annarkwin.Platinum.MMO.DataLibrary.SelectionManager;
 import com.gmail.Annarkwin.Platinum.MMO.Exceptions.RegionIntersectException;
 
-public class RegionNew implements Subcommand
+public class RegionNew extends PlatinumCommand
 {
 
-	private String description = "Create a new region with your selection";
-	private MainCommand main;
-	private String name = "new";
-	private String permission = "platinum.region.new";
-	private boolean playeronly = true;
-	private String usage = "/region new";
-
-	public RegionNew( MainCommand maincommand )
+	public RegionNew( String name, String permission, boolean player, String description, String usage )
 	{
 
-		main = maincommand;
+		super(name, permission, player, description, usage);
+		// TODO Auto-generated constructor stub
 
 	}
 
 	@Override
-	public String getDescription()
-	{
-
-		return description;
-
-	}
-
-	@Override
-	public MainCommand getMainCommand()
-	{
-
-		return main;
-
-	}
-
-	@Override
-	public String getName()
-	{
-
-		return name;
-
-	}
-
-	@Override
-	public String getPermission()
-	{
-
-		return permission;
-
-	}
-
-	@Override
-	public String getUsage()
-	{
-
-		return usage;
-
-	}
-
-	@Override
-	public boolean isPlayerOnly()
-	{
-
-		return playeronly;
-
-	}
-
-	@Override
-	public void run( CommandSender sender, String[] args )
+	public boolean run( CommandSender sender, String cmdname, String[] args )
 	{
 
 		Player p = (Player) sender;
@@ -106,6 +51,7 @@ public class RegionNew implements Subcommand
 			}
 
 		}
+		return true;
 
 	}
 

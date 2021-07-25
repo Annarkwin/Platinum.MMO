@@ -4,76 +4,21 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import com.gmail.Annarkwin.Platinum.API.MainCommand;
-import com.gmail.Annarkwin.Platinum.API.Subcommand;
+import com.gmail.Annarkwin.Platinum.API.PlatinumCommand;
 
-public class SudoRun implements Subcommand
+public class SudoRun extends PlatinumCommand
 {
 
-	private String description = "Make a player send a command";
-	private MainCommand main;
-	private String name = "run";
-	private String permission = "platinum.sudo.run";
-	private boolean playeronly = true;
-	private String usage = "/sudo run <player> <command string>";
-
-	public SudoRun( MainCommand maincommand )
+	public SudoRun( String name, String permission, boolean player, String description, String usage )
 	{
 
-		main = maincommand;
+		super(name, permission, player, description, usage);
+		// TODO Auto-generated constructor stub
 
 	}
 
 	@Override
-	public String getDescription()
-	{
-
-		return description;
-
-	}
-
-	@Override
-	public MainCommand getMainCommand()
-	{
-
-		return main;
-
-	}
-
-	@Override
-	public String getName()
-	{
-
-		return name;
-
-	}
-
-	@Override
-	public String getPermission()
-	{
-
-		return permission;
-
-	}
-
-	@Override
-	public String getUsage()
-	{
-
-		return usage;
-
-	}
-
-	@Override
-	public boolean isPlayerOnly()
-	{
-
-		return playeronly;
-
-	}
-
-	@Override
-	public void run( CommandSender sender, String[] args )
+	public boolean run( CommandSender sender, String cmdname, String[] args )
 	{
 
 		if (args.length > 1)
@@ -123,6 +68,8 @@ public class SudoRun implements Subcommand
 			sender.sendMessage("§4[Error]:§f You must enter a player to send the command as");
 
 		}
+		
+		return true;
 
 	}
 

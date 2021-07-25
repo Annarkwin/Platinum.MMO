@@ -3,78 +3,23 @@ package com.gmail.Annarkwin.Platinum.MMO.Commands.Warp;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import com.gmail.Annarkwin.Platinum.API.MainCommand;
-import com.gmail.Annarkwin.Platinum.API.Subcommand;
+import com.gmail.Annarkwin.Platinum.API.PlatinumCommand;
 import com.gmail.Annarkwin.Platinum.MMO.MMO;
 import com.gmail.Annarkwin.Platinum.MMO.Warp;
 
-public class WarpRemove implements Subcommand
+public class WarpRemove extends PlatinumCommand
 {
 
-	private String description = "Remove a warp and its portals";
-	private MainCommand main;
-	private String name = "remove";
-	private String permission = "platinum.warp.remove";
-	private boolean playeronly = true;
-	private String usage = "/warp remove <warp>";
-
-	public WarpRemove( MainCommand maincommand )
+	public WarpRemove( String name, String permission, boolean player, String description, String usage )
 	{
 
-		main = maincommand;
+		super(name, permission, player, description, usage);
+		// TODO Auto-generated constructor stub
 
 	}
 
 	@Override
-	public String getDescription()
-	{
-
-		return description;
-
-	}
-
-	@Override
-	public MainCommand getMainCommand()
-	{
-
-		return main;
-
-	}
-
-	@Override
-	public String getName()
-	{
-
-		return name;
-
-	}
-
-	@Override
-	public String getPermission()
-	{
-
-		return permission;
-
-	}
-
-	@Override
-	public String getUsage()
-	{
-
-		return usage;
-
-	}
-
-	@Override
-	public boolean isPlayerOnly()
-	{
-
-		return playeronly;
-
-	}
-
-	@Override
-	public void run( CommandSender sender, String[] args )
+	public boolean run( CommandSender sender, String cmdname, String[] args )
 	{
 
 		Player p = (Player) sender;
@@ -84,7 +29,7 @@ public class WarpRemove implements Subcommand
 		{
 
 			p.sendMessage("§4[Error]:§f Enter a name");
-			return;
+			return true;
 
 		}
 
@@ -92,12 +37,13 @@ public class WarpRemove implements Subcommand
 		{
 
 			p.sendMessage("§4[Error]:§f No warp with that name exists");
-			return;
+			return true;
 
 		}
 
 		MMO.warp_manager.removeWarp(warg);
 		p.sendMessage("§2[Info]:§f Warp removed");
+		return true;
 
 	}
 

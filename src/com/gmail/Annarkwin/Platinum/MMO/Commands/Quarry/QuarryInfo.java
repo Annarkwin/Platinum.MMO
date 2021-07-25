@@ -3,78 +3,23 @@ package com.gmail.Annarkwin.Platinum.MMO.Commands.Quarry;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import com.gmail.Annarkwin.Platinum.API.MainCommand;
-import com.gmail.Annarkwin.Platinum.API.Subcommand;
+import com.gmail.Annarkwin.Platinum.API.PlatinumCommand;
 import com.gmail.Annarkwin.Platinum.MMO.MMO;
 import com.gmail.Annarkwin.Platinum.MMO.Quarry;
 
-public class QuarryInfo implements Subcommand
+public class QuarryInfo extends PlatinumCommand
 {
 
-	private String description = "Show quarry info";
-	private MainCommand main;
-	private String name = "info";
-	private String permission = "platinum.quarry.info";
-	private boolean playeronly = true;
-	private String usage = "/quarry info <quarry>";
-
-	public QuarryInfo( MainCommand maincommand )
+	public QuarryInfo( String name, String permission, boolean player, String description, String usage )
 	{
 
-		main = maincommand;
+		super(name, permission, player, description, usage);
+		// TODO Auto-generated constructor stub
 
 	}
 
 	@Override
-	public String getDescription()
-	{
-
-		return description;
-
-	}
-
-	@Override
-	public MainCommand getMainCommand()
-	{
-
-		return main;
-
-	}
-
-	@Override
-	public String getName()
-	{
-
-		return name;
-
-	}
-
-	@Override
-	public String getPermission()
-	{
-
-		return permission;
-
-	}
-
-	@Override
-	public String getUsage()
-	{
-
-		return usage;
-
-	}
-
-	@Override
-	public boolean isPlayerOnly()
-	{
-
-		return playeronly;
-
-	}
-
-	@Override
-	public void run( CommandSender sender, String[] args )
+	public boolean run( CommandSender sender, String cmdname, String[] args )
 	{
 
 		Player p = (Player) sender;
@@ -84,7 +29,7 @@ public class QuarryInfo implements Subcommand
 		{
 
 			p.sendMessage("§4[Error]:§f Enter the name of the quarry");
-			return;
+			return true;
 
 		}
 
@@ -92,7 +37,7 @@ public class QuarryInfo implements Subcommand
 		{
 
 			p.sendMessage("§4[Error]:§f No quarry with that name found");
-			return;
+			return true;
 
 		}
 
@@ -103,6 +48,7 @@ public class QuarryInfo implements Subcommand
 		p.sendMessage(" Cooldown (sec): " + qarg.getCooldownSeconds());
 		p.sendMessage(" Cooldown Remaining (sec): " + (qarg.getCooldownRemainder() + 1));
 		p.sendMessage(" Block: " + qarg.getBlockType());
+		return true;
 
 	}
 

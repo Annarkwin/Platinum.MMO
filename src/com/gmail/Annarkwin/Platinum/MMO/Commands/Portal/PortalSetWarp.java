@@ -3,78 +3,22 @@ package com.gmail.Annarkwin.Platinum.MMO.Commands.Portal;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import com.gmail.Annarkwin.Platinum.API.MainCommand;
-import com.gmail.Annarkwin.Platinum.API.Subcommand;
+import com.gmail.Annarkwin.Platinum.API.PlatinumCommand;
 import com.gmail.Annarkwin.Platinum.MMO.MMO;
 import com.gmail.Annarkwin.Platinum.MMO.Portal;
 
-public class PortalSetWarp implements Subcommand
+public class PortalSetWarp extends PlatinumCommand
 {
-
-	private String description = "Set warp point";
-	private MainCommand main;
-	private String name = "setwarp";
-	private String permission = "platinum.portal.setwarp";
-	private boolean playeronly = true;
-	private String usage = "/portal setwarp <portal> <warp>";
-
-	public PortalSetWarp( MainCommand maincommand )
+	public PortalSetWarp( String name, String permission, boolean player, String description, String usage )
 	{
 
-		main = maincommand;
+		super(name, permission, player, description, usage);
+		// TODO Auto-generated constructor stub
 
 	}
 
 	@Override
-	public String getDescription()
-	{
-
-		return description;
-
-	}
-
-	@Override
-	public MainCommand getMainCommand()
-	{
-
-		return main;
-
-	}
-
-	@Override
-	public String getName()
-	{
-
-		return name;
-
-	}
-
-	@Override
-	public String getPermission()
-	{
-
-		return permission;
-
-	}
-
-	@Override
-	public String getUsage()
-	{
-
-		return usage;
-
-	}
-
-	@Override
-	public boolean isPlayerOnly()
-	{
-
-		return playeronly;
-
-	}
-
-	@Override
-	public void run( CommandSender sender, String[] args )
+	public boolean run( CommandSender sender, String cmdname, String[] args )
 	{
 
 		Player p = (Player) sender;
@@ -84,7 +28,7 @@ public class PortalSetWarp implements Subcommand
 		{
 
 			p.sendMessage("§4[Error]:§f Enter the name of the portal");
-			return;
+			return true;
 
 		}
 
@@ -92,7 +36,7 @@ public class PortalSetWarp implements Subcommand
 		{
 
 			p.sendMessage("§4[Error]:§f No portal with that name found");
-			return;
+			return true;
 
 		}
 
@@ -100,7 +44,7 @@ public class PortalSetWarp implements Subcommand
 		{
 
 			p.sendMessage("§4[Error]:§f Enter a warp point");
-			return;
+			return true;
 
 		}
 
@@ -108,12 +52,13 @@ public class PortalSetWarp implements Subcommand
 		{
 
 			p.sendMessage("§4[Error]:§f Warp point not found");
-			return;
+			return true;
 
 		}
 
 		parg.setWarpLocation(MMO.warp_manager.getWarp(args[2]));
 		p.sendMessage("§2[Info]:§f Portal warp location set");
+		return true;
 
 	}
 

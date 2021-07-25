@@ -4,76 +4,21 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import com.gmail.Annarkwin.Platinum.API.MainCommand;
-import com.gmail.Annarkwin.Platinum.API.Subcommand;
+import com.gmail.Annarkwin.Platinum.API.PlatinumCommand;
 
-public class InventoryClear implements Subcommand
+public class InventoryClear extends PlatinumCommand
 {
 
-	private String description = "Clear a player's inventory";
-	private MainCommand main;
-	private String name = "clear";
-	private String permission = "platinum.inventory.clear";
-	private boolean playeronly = true;
-	private String usage = "/inventory clear";
-
-	public InventoryClear( MainCommand maincommand )
+	public InventoryClear( String name, String permission, boolean player, String description, String usage )
 	{
 
-		main = maincommand;
+		super(name, permission, player, description, usage);
+		// TODO Auto-generated constructor stub
 
 	}
 
 	@Override
-	public String getDescription()
-	{
-
-		return description;
-
-	}
-
-	@Override
-	public MainCommand getMainCommand()
-	{
-
-		return main;
-
-	}
-
-	@Override
-	public String getName()
-	{
-
-		return name;
-
-	}
-
-	@Override
-	public String getPermission()
-	{
-
-		return permission;
-
-	}
-
-	@Override
-	public String getUsage()
-	{
-
-		return usage;
-
-	}
-
-	@Override
-	public boolean isPlayerOnly()
-	{
-
-		return playeronly;
-
-	}
-
-	@Override
-	public void run( CommandSender sender, String[] args )
+	public boolean run( CommandSender sender, String cmdname, String[] args )
 	{
 
 		Player p = (Player) sender;
@@ -105,6 +50,7 @@ public class InventoryClear implements Subcommand
 		else
 			p.sendMessage("§4[Error]:§f You don't have permission for that command");
 
+		return true;
 	}
 
 }

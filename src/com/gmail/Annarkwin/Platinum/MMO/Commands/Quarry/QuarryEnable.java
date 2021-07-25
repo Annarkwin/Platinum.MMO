@@ -3,78 +3,23 @@ package com.gmail.Annarkwin.Platinum.MMO.Commands.Quarry;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import com.gmail.Annarkwin.Platinum.API.MainCommand;
-import com.gmail.Annarkwin.Platinum.API.Subcommand;
+import com.gmail.Annarkwin.Platinum.API.PlatinumCommand;
 import com.gmail.Annarkwin.Platinum.MMO.MMO;
 import com.gmail.Annarkwin.Platinum.MMO.Quarry;
 
-public class QuarryEnable implements Subcommand
+public class QuarryEnable extends PlatinumCommand
 {
 
-	private String description = "Enable a quarry";
-	private MainCommand main;
-	private String name = "enable";
-	private String permission = "platinum.quarry.enable";
-	private boolean playeronly = true;
-	private String usage = "/quarry enable <quarry>";
-
-	public QuarryEnable( MainCommand maincommand )
+	public QuarryEnable( String name, String permission, boolean player, String description, String usage )
 	{
 
-		main = maincommand;
+		super(name, permission, player, description, usage);
+		// TODO Auto-generated constructor stub
 
 	}
 
 	@Override
-	public String getDescription()
-	{
-
-		return description;
-
-	}
-
-	@Override
-	public MainCommand getMainCommand()
-	{
-
-		return main;
-
-	}
-
-	@Override
-	public String getName()
-	{
-
-		return name;
-
-	}
-
-	@Override
-	public String getPermission()
-	{
-
-		return permission;
-
-	}
-
-	@Override
-	public String getUsage()
-	{
-
-		return usage;
-
-	}
-
-	@Override
-	public boolean isPlayerOnly()
-	{
-
-		return playeronly;
-
-	}
-
-	@Override
-	public void run( CommandSender sender, String[] args )
+	public boolean run( CommandSender sender, String cmdname, String[] args )
 	{
 
 		Player p = (Player) sender;
@@ -84,7 +29,7 @@ public class QuarryEnable implements Subcommand
 		{
 
 			p.sendMessage("§4[Error]:§f Enter the name of the quarry");
-			return;
+			return true;
 
 		}
 
@@ -92,7 +37,7 @@ public class QuarryEnable implements Subcommand
 		{
 
 			p.sendMessage("§4[Error]:§f No quarry with that name found");
-			return;
+			return true;
 
 		}
 
@@ -100,12 +45,13 @@ public class QuarryEnable implements Subcommand
 		{
 
 			p.sendMessage("§4[Error]:§f That quarry is already enabled");
-			return;
+			return true;
 
 		}
 
 		p.sendMessage("§2[Info]:§f Quarry usability has been set to " + qarg.toggleEnabled());
 
+		return true;
 	}
 
 }

@@ -2,80 +2,26 @@ package com.gmail.Annarkwin.Platinum.MMO.Commands.Region;
 
 import org.bukkit.command.CommandSender;
 
-import com.gmail.Annarkwin.Platinum.API.MainCommand;
-import com.gmail.Annarkwin.Platinum.API.Subcommand;
+import com.gmail.Annarkwin.Platinum.API.PlatinumCommand;
 
-public class RegionGo implements Subcommand
+public class RegionGo extends PlatinumCommand
 {
 
-	private String description = "Teleport to a region";
-	private MainCommand main;
-	private String name = "go";
-	private String permission = "platinum.region.go";
-	private boolean playeronly = true;
-	private String usage = "/region go <name/number>";
-
-	public RegionGo( MainCommand maincommand )
+	public RegionGo( String name, String permission, boolean player, String description, String usage )
 	{
 
-		main = maincommand;
+		super(name, permission, player, description, usage);
+		// TODO Auto-generated constructor stub
 
 	}
 
 	@Override
-	public String getDescription()
-	{
-
-		return description;
-
-	}
-
-	@Override
-	public MainCommand getMainCommand()
-	{
-
-		return main;
-
-	}
-
-	@Override
-	public String getName()
-	{
-
-		return name;
-
-	}
-
-	@Override
-	public String getPermission()
-	{
-
-		return permission;
-
-	}
-
-	@Override
-	public String getUsage()
-	{
-
-		return usage;
-
-	}
-
-	@Override
-	public boolean isPlayerOnly()
-	{
-
-		return playeronly;
-
-	}
-
-	@Override
-	public void run( CommandSender sender, String[] args )
+	public boolean run( CommandSender sender, String cmdname, String[] args )
 	{
 
 		// TODO
 
+		return true;
 	}
 
 }

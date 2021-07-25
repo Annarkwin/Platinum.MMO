@@ -3,33 +3,18 @@ package com.gmail.Annarkwin.Platinum.MMO.Commands.Quarry;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import com.gmail.Annarkwin.Platinum.API.MainCommand;
-import com.gmail.Annarkwin.Platinum.API.Subcommand;
+import com.gmail.Annarkwin.Platinum.API.PlatinumCommand;
 import com.gmail.Annarkwin.Platinum.MMO.MMO;
 import com.gmail.Annarkwin.Platinum.MMO.Quarry;
 
-public class QuarryCooldown implements Subcommand
+public class QuarryCooldown extends PlatinumCommand
 {
 
-	private String description = "Set cooldown";
-	private MainCommand main;
-	private String name = "cooldown";
-	private String permission = "platinum.quarry.cooldown";
-	private boolean playeronly = true;
-	private String usage = "/quarry cooldown <quarry> <seconds>";
-
-	public QuarryCooldown( MainCommand maincommand )
+	public QuarryCooldown( String name, String permission, boolean player, String description, String usage )
 	{
 
-		main = maincommand;
-
-	}
-
-	@Override
-	public String getDescription()
-	{
-
-		return description;
+		super(name, permission, player, description, usage);
+		// TODO Auto-generated constructor stub
 
 	}
 
@@ -37,38 +22,6 @@ public class QuarryCooldown implements Subcommand
 	{
 
 		return Integer.parseInt(s);
-
-	}
-
-	@Override
-	public MainCommand getMainCommand()
-	{
-
-		return main;
-
-	}
-
-	@Override
-	public String getName()
-	{
-
-		return name;
-
-	}
-
-	@Override
-	public String getPermission()
-	{
-
-		return permission;
-
-	}
-
-	@Override
-	public String getUsage()
-	{
-
-		return usage;
 
 	}
 
@@ -90,17 +43,8 @@ public class QuarryCooldown implements Subcommand
 		}
 
 	}
-
 	@Override
-	public boolean isPlayerOnly()
-	{
-
-		return playeronly;
-
-	}
-
-	@Override
-	public void run( CommandSender sender, String[] args )
+	public boolean run( CommandSender sender, String cmdname, String[] args )
 	{
 
 		Player p = (Player) sender;
@@ -110,7 +54,7 @@ public class QuarryCooldown implements Subcommand
 		{
 
 			p.sendMessage("§4[Error]:§f Enter the name of the quarry then the time in minutes");
-			return;
+			return true;
 
 		}
 
@@ -118,7 +62,7 @@ public class QuarryCooldown implements Subcommand
 		{
 
 			p.sendMessage("§4[Error]:§f No quarry with that name found");
-			return;
+			return true;
 
 		}
 
@@ -126,12 +70,13 @@ public class QuarryCooldown implements Subcommand
 		{
 
 			p.sendMessage("§4[Error]:§f Invalid time");
-			return;
+			return true;
 
 		}
 
 		qarg.setCooldownSeconds(getInt(args[2]));
 		p.sendMessage("§2[Info]:§f Quarry timer set");
+		return true;
 
 	}
 

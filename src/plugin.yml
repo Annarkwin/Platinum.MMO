@@ -8,94 +8,93 @@ commands:
   AFK:
     description: "Set your AFK Status"
     aliases: []
-    permission: platinum.afk
+    permission: platinum.command.afk
     usage: /AFK Help
   Enderchest:
     description: "Administrate enderchests"
-    aliases: []
-    permission: platinum.enderchest
+    aliases: [ec]
+    permission: platinum.command.enderchest
     usage: /Enderchest Help
   Inventory:
     description: "Administrate inventories"
-    aliases: []
-    permission: platinum.inventory
+    aliases: [inv]
+    permission: platinum.command.inventory
     usage: /Inventory Help
   Test:
     description: "Test Command"
     aliases: []
-    permission: platinum.test
+    permission: platinum.command.test
     usage: /Test
   Portal:
     description: "Hook portals to warp points for public use"
     aliases: []
-    permission: platinum.portal
+    permission: platinum.command.portal
     usage: /Portal Help
   Quarry:
     description: "Make automatically regenerating quarries"
     aliases: []
-    permission: platinum.quarry
+    permission: platinum.command.quarry
     usage: /Quarry Help
   Region:
     description: "Set up protected regions"
-    aliases: []
-    permission: platinum.region
+    aliases: [rg]
+    permission: platinum.command.region
     usage: /Region Help
   Spawn:
     description: "Alias for /warp go spawn"
     aliases: []
-    permission: platinum.spawn
+    permission: platinum.command.spawn
     usage: /Spawn Help
   Sudo:
     description: "Force someone to run a command"
     aliases: []
-    permission: platinum.sudo
+    permission: platinum.command.sudo
     usage: /Sudo Help
   Warp:
     description: "Create warp points for fast travel"
     aliases: []
-    permission: platinum.warp
+    permission: platinum.command.warp
     usage: /Warp Help
 
 permissions:
   platinum.afk.user:
     default: true
     children:
-      platinum.afk: true
-      platinum.afk.help: true
-      platinum.afk.afk: true
+      platinum.command.afk: true
+      platinum.command.afk.help: true
+      platinum.command.afk.afk: true
   platinum.quarry.user:
     default: true
     children:
-      platinum.quarry: true
-      platinum.quarry.help: true
-      platinum.quarry.go: true
-      platinum.quarry.list: true
+      platinum.command.quarry: true
+      platinum.command.quarry.help: true
+      platinum.command.quarry.list: true
   platinum.warp.user:
     default: true
     children:
-      platinum.warp: true
-      platinum.warp.help: true
-      platinum.warp.go: true
-      platinum.warp.list: true
+      platinum.command.warp: true
+      platinum.command.warp.help: true
+      platinum.command.warp.go: true
+      platinum.command.warp.list: true
   platinum.region.user:
     default: true
     children:
-      platinum.region: true
-      platinum.region.help: true
-      platinum.region.info: true
-      platinum.region.allowed: true
-      platinum.region.allow: true
-      platinum.region.kick: true
+      platinum.command.region: true
+      platinum.command.region.help: true
+      platinum.command.region.info: true
+      platinum.command.region.allowed: true
+      platinum.command.region.allow: true
+      platinum.command.region.kick: true
   platinum.spawn.user:
     default: true
     children:
-      platinum.warp: true
-      platinum.warp.go: true
-      platinum.spawn: true
-      platinum.spawn.help: true
+      platinum.command.warp: true
+      platinum.command.warp.go: true
+      platinum.command.spawn: true
+      platinum.command.spawn.help: true
   platinum.inventory.user:
     default: true
     children:
-      platinum.inventory: true
-      platinum.inventory.help: true
-      platinum.inventory.drop: true
+      platinum.command.inventory: true
+      platinum.command.inventory.help: true
+      platinum.command.inventory.drop: true
