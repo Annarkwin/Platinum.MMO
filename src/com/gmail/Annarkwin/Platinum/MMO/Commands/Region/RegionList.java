@@ -20,6 +20,7 @@ public class RegionList extends PlatinumCommand
 	{
 
 		return true;
+
 	}
 
 }

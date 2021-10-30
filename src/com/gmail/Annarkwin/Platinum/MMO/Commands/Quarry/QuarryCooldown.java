@@ -43,6 +43,7 @@ public class QuarryCooldown extends PlatinumCommand
 		}
 
 	}
+
 	@Override
 	public boolean run( CommandSender sender, String cmdname, String[] args )
 	{

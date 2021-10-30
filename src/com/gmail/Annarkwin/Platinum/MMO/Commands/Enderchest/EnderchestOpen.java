@@ -17,7 +17,6 @@ public class EnderchestOpen extends PlatinumCommand
 
 	}
 
-
 	@Override
 	public boolean run( CommandSender sender, String cmdname, String[] args )
 	{
@@ -49,6 +48,7 @@ public class EnderchestOpen extends PlatinumCommand
 			p.sendMessage("§4[Error]:§f You don't have permission for that command");
 
 		return true;
+
 	}
 
 }

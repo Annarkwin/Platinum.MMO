@@ -75,6 +75,7 @@ public class QuarryNew extends PlatinumCommand
 		p.sendMessage("§2[Info]:§f Quarry created");
 
 		return true;
+
 	}
 
 }

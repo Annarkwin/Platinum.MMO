@@ -62,6 +62,7 @@ public class RegionAllowed extends PlatinumCommand
 			}
 
 		}
+
 		return true;
 
 	}

@@ -52,6 +52,7 @@ public class PortalDisable extends PlatinumCommand
 		p.sendMessage("§2[Info]:§f Portal usability has been set to " + parg.toggleEnabled());
 
 		return true;
+
 	}
 
 }

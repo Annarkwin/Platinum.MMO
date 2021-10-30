@@ -68,7 +68,7 @@ public class SudoRun extends PlatinumCommand
 			sender.sendMessage("§4[Error]:§f You must enter a player to send the command as");
 
 		}
-		
+
 		return true;
 
 	}

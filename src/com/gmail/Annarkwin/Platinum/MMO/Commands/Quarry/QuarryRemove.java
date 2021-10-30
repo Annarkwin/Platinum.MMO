@@ -57,6 +57,7 @@ public class QuarryRemove extends PlatinumCommand
 		p.sendMessage("§2[Info]:§f Quarry removed");
 
 		return true;
+
 	}
 
 }

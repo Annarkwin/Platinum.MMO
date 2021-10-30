@@ -22,6 +22,7 @@ public class RegionGo extends PlatinumCommand
 		// TODO
 
 		return true;
+
 	}
 
 }

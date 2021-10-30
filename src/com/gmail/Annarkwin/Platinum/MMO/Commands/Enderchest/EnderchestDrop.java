@@ -100,6 +100,7 @@ public class EnderchestDrop extends PlatinumCommand
 			p.sendMessage("§4[Error]:§f You don't have permission to do that");
 
 		return true;
+
 	}
 
 }

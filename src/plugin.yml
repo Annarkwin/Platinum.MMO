@@ -2,7 +2,7 @@ name: PlatinumMMO
 main: com.gmail.Annarkwin.Platinum.MMO.MMO
 version: 1.0
 api-version: 1.16
-depend: [PlatinumAPI]
+depend: [PlatinumAPI, PlatinumWorlds]
 
 commands:
   AFK:

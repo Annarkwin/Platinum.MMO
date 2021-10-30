@@ -61,6 +61,7 @@ public class WarpGo extends PlatinumCommand
 		p.sendMessage("§2[Info]:§f You have warped");
 
 		return true;
+
 	}
 
 }

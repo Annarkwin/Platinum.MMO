@@ -46,7 +46,7 @@ public class RegionAllow extends PlatinumCommand
 					p.sendMessage("§4[Error]:§f That isn't a valid online player");
 
 				}
-				else if (target == p)
+				else if (target == p && !p.hasPermission("platinum.region.admin"))
 				{
 
 					p.sendMessage("§4[Error]:§f You can't allow yourself");
@@ -81,6 +81,7 @@ public class RegionAllow extends PlatinumCommand
 			p.sendMessage("§4[Error]:§f You aren't the owner of this region");
 
 		}
+
 		return true;
 
 	}

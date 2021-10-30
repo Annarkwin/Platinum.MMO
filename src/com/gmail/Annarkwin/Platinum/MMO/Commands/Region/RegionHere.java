@@ -6,7 +6,7 @@ import com.gmail.Annarkwin.Platinum.API.PlatinumCommand;
 
 public class RegionHere extends PlatinumCommand
 {
-	
+
 	public RegionHere( String name, String permission, boolean player, String description, String usage )
 	{
 
@@ -21,6 +21,7 @@ public class RegionHere extends PlatinumCommand
 
 		// Unneeded
 		return true;
+
 	}
 
 }

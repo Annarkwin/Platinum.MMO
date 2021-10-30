@@ -9,7 +9,6 @@ import com.gmail.Annarkwin.Platinum.API.PlatinumMainCommand;
 public class CommandSpawn extends PlatinumMainCommand
 {
 
-
 	public CommandSpawn( String name, String permission, boolean player, String description, String usage )
 	{
 

@@ -53,6 +53,7 @@ public class WarpHook extends PlatinumCommand
 		p.sendMessage("§2[Info]:§f Warp hooked");
 
 		return true;
+
 	}
 
 }

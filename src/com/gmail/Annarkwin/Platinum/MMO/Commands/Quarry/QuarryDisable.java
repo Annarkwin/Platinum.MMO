@@ -38,6 +38,7 @@ public class QuarryDisable extends PlatinumCommand
 
 			p.sendMessage("§4[Error]:§f No quarry with that name found");
 			return true;
+
 		}
 
 		if (!qarg.isEnabled())
@@ -51,6 +52,7 @@ public class QuarryDisable extends PlatinumCommand
 		p.sendMessage("§2[Info]:§f Quarry usability has been set to " + qarg.toggleEnabled());
 
 		return true;
+
 	}
 
 }

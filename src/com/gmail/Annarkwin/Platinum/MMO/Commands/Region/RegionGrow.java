@@ -46,6 +46,7 @@ public class RegionGrow extends PlatinumCommand
 		}
 
 		return true;
+
 	}
 
 }

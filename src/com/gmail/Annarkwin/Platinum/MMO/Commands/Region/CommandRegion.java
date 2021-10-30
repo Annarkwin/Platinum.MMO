@@ -8,7 +8,7 @@ import com.gmail.Annarkwin.Platinum.API.PlatinumMainCommand;
 
 public class CommandRegion extends PlatinumMainCommand
 {
-	
+
 	public CommandRegion( String name, String permission, boolean player, String description, String usage )
 	{
 

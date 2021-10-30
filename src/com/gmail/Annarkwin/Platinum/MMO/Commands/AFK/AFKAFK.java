@@ -38,6 +38,7 @@ public class AFKAFK extends PlatinumCommand
 		}
 
 		return true;
+
 	}
 
 }

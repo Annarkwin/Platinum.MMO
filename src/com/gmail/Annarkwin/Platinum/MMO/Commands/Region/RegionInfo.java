@@ -45,6 +45,7 @@ public class RegionInfo extends PlatinumCommand
 			p.sendMessage(" §2PVP: §f" + r.isPVP());
 
 		}
+
 		return true;
 
 	}

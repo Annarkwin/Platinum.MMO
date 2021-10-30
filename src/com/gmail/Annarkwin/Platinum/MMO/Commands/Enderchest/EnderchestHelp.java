@@ -74,6 +74,7 @@ public class EnderchestHelp extends PlatinumCommand implements HelpCommand
 			CommandHelper.sendHelp(sender, entries, "enderchest", 1);
 
 		}
+
 		return true;
 
 	}

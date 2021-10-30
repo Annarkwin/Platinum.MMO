@@ -51,6 +51,7 @@ public class RegionNew extends PlatinumCommand
 			}
 
 		}
+
 		return true;
 
 	}

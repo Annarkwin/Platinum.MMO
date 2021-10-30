@@ -74,6 +74,7 @@ public class SpawnHelp extends PlatinumCommand implements HelpCommand
 			CommandHelper.sendHelp(sender, entries, "Spawn", 1);
 
 		}
+
 		return true;
 
 	}

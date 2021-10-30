@@ -10,7 +10,6 @@ import com.gmail.Annarkwin.Platinum.MMO.Region;
 public class RegionPublic extends PlatinumCommand
 {
 
-
 	public RegionPublic( String name, String permission, boolean player, String description, String usage )
 	{
 
@@ -45,6 +44,7 @@ public class RegionPublic extends PlatinumCommand
 			p.sendMessage("§4[Error]:§f You aren't the owner of this region");
 
 		}
+
 		return true;
 
 	}

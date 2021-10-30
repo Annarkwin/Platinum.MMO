@@ -74,7 +74,7 @@ public class PortalHelp extends PlatinumCommand implements HelpCommand
 			CommandHelper.sendHelp(sender, entries, "Portal", 1);
 
 		}
-		
+
 		return true;
 
 	}

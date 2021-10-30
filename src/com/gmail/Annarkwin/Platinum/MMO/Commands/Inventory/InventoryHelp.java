@@ -74,6 +74,7 @@ public class InventoryHelp extends PlatinumCommand implements HelpCommand
 			CommandHelper.sendHelp(sender, entries, "inventory", 1);
 
 		}
+
 		return true;
 
 	}

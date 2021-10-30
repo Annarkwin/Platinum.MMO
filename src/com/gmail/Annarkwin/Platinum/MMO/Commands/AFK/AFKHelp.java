@@ -11,7 +11,6 @@ import com.gmail.Annarkwin.Platinum.API.PlatinumCommand;
 public class AFKHelp extends PlatinumCommand implements HelpCommand
 {
 
-
 	public AFKHelp( String name, String permission, boolean player, String description, String usage )
 	{
 
@@ -75,6 +74,7 @@ public class AFKHelp extends PlatinumCommand implements HelpCommand
 			CommandHelper.sendHelp(sender, entries, "afk", 1);
 
 		}
+
 		return true;
 
 	}

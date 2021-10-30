@@ -52,6 +52,7 @@ public class WarpEnable extends PlatinumCommand
 		p.sendMessage("§2[Info]:§f Warp usability has been set to " + parg.toggleEnabled());
 
 		return true;
+
 	}
 
 }

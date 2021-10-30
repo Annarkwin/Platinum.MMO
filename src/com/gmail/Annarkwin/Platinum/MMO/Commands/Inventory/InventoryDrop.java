@@ -99,6 +99,7 @@ public class InventoryDrop extends PlatinumCommand
 			p.sendMessage("§4[Error]:§f You don't have permission for that command");
 
 		return true;
+
 	}
 
 }

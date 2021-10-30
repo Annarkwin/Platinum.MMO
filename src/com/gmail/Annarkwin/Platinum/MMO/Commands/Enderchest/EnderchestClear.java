@@ -49,6 +49,7 @@ public class EnderchestClear extends PlatinumCommand
 		}
 		else
 			p.sendMessage("§4[Error]:§f You don't have permission for that command");
+
 		return false;
 
 	}

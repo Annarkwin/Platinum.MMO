@@ -44,7 +44,7 @@ public class QuarryHelp extends PlatinumCommand implements HelpCommand
 		return ((String[]) entries.toArray(new String[0]));
 
 	}
-	
+
 	@Override
 	public boolean run( CommandSender sender, String cmdname, String[] args )
 	{
@@ -74,6 +74,7 @@ public class QuarryHelp extends PlatinumCommand implements HelpCommand
 			CommandHelper.sendHelp(sender, entries, "Quarry", 1);
 
 		}
+
 		return true;
 
 	}

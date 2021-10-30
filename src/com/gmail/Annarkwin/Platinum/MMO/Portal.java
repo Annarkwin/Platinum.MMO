@@ -106,7 +106,7 @@ public class Portal implements ConfigurationSerializable
 	public void setWarpLocation( Warp warp )
 	{
 
-		warp.getName();
+		this.warpname = warp.getName();
 
 	}
 

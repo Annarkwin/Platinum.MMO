@@ -74,6 +74,7 @@ public class WarpHelp extends PlatinumCommand implements HelpCommand
 			CommandHelper.sendHelp(sender, entries, "Warp", 1);
 
 		}
+
 		return true;
 
 	}

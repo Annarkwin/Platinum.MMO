@@ -1527,6 +1527,7 @@ public class ListenerRegionProtection implements Listener
 
 				e.getEntity().sendMessage("§2[Info]:§f You can't use that cauldron");
 				e.setCancelled(true);
+
 			}
 
 	}

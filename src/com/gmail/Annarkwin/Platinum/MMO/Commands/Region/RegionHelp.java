@@ -74,7 +74,7 @@ public class RegionHelp extends PlatinumCommand implements HelpCommand
 			CommandHelper.sendHelp(sender, entries, "Region", 1);
 
 		}
-		
+
 		return true;
 
 	}

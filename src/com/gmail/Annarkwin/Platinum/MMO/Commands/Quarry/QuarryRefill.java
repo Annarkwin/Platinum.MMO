@@ -45,6 +45,7 @@ public class QuarryRefill extends PlatinumCommand
 		p.sendMessage("§2[Info]:§f Quarry has been filled");
 
 		return true;
+
 	}
 
 }

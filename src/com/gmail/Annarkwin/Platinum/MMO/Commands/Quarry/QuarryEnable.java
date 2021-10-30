@@ -52,6 +52,7 @@ public class QuarryEnable extends PlatinumCommand
 		p.sendMessage("§2[Info]:§f Quarry usability has been set to " + qarg.toggleEnabled());
 
 		return true;
+
 	}
 
 }

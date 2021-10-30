@@ -79,6 +79,7 @@ public class PortalNew extends PlatinumCommand
 		p.sendMessage("§2[Info]:§f Portal created");
 
 		return true;
+
 	}
 
 }

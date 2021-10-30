@@ -44,6 +44,7 @@ public class SudoHelp extends PlatinumCommand implements HelpCommand
 		return ((String[]) entries.toArray(new String[0]));
 
 	}
+
 	@Override
 	public boolean run( CommandSender sender, String cmdname, String[] args )
 	{
@@ -73,6 +74,7 @@ public class SudoHelp extends PlatinumCommand implements HelpCommand
 			CommandHelper.sendHelp(sender, entries, "sudo", 1);
 
 		}
+
 		return true;
 
 	}

@@ -9,6 +9,7 @@ import com.gmail.Annarkwin.Platinum.MMO.Portal;
 
 public class PortalSetWarp extends PlatinumCommand
 {
+
 	public PortalSetWarp( String name, String permission, boolean player, String description, String usage )
 	{
 
