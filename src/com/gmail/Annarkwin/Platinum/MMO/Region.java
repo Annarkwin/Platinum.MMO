@@ -158,6 +158,13 @@ public class Region implements ConfigurationSerializable , Comparable<Region>
 		return allowed.remove(player.toString());
 
 	}
+	
+	public void clearAllowed()
+	{
+		
+		allowed.clear();
+		
+	}
 
 	public String getName()
 	{
@@ -294,8 +301,8 @@ public class Region implements ConfigurationSerializable , Comparable<Region>
 
 	public boolean isAllowed( UUID p )
 	{
-
-		return isOwner(p) || allowed.contains(p.toString());
+		Player player = Bukkit.getPlayer(p);
+		return isOwner(p) || allowed.contains(p.toString()) || (player != null && player.hasPermission("platinum.region.admin"));
 
 	}
 

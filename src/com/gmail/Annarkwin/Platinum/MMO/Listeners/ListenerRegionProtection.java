@@ -103,8 +103,7 @@ public class ListenerRegionProtection implements Listener
 	// TODO Signs, Flower pot, and bed variants are not protected!
 	private static final ArrayList<Material> prot_blocks = new ArrayList<Material>(
 			Arrays.asList(Material.BEACON, Material.COMPARATOR, Material.REPEATER, Material.END_PORTAL_FRAME,
-					Material.FLOWER_POT, Material.JUKEBOX, Material.RESPAWN_ANCHOR, Material.NOTE_BLOCK,
-					Material.FLOWER_POT, Material.SWEET_BERRY_BUSH, Material.TNT));
+					Material.FLOWER_POT, Material.JUKEBOX, Material.RESPAWN_ANCHOR, Material.NOTE_BLOCK, Material.SWEET_BERRY_BUSH, Material.TNT));
 
 	private static final ArrayList<PotionEffectType> safe_potions = new ArrayList<PotionEffectType>(Arrays.asList(
 			PotionEffectType.FIRE_RESISTANCE, PotionEffectType.HEAL, PotionEffectType.JUMP, PotionEffectType.LUCK,
@@ -428,6 +427,10 @@ public class ListenerRegionProtection implements Listener
 		if (from != to)
 			e.setCancelled(true);
 
+		if (from != null && !from.isGrowing())
+			if (e.getSource().getType() == Material.BAMBOO || e.getSource().getType() == Material.BAMBOO_SAPLING || e.getSource().getType() == Material.CHORUS_FLOWER || e.getSource().getType() == Material.KELP)
+				e.setCancelled(true);
+		
 	}
 
 	// ---------------------------------------
@@ -792,7 +795,6 @@ public class ListenerRegionProtection implements Listener
 						return;
 					else if (e.getEntity() instanceof Player && e.getDamager() instanceof Player)
 					{
-
 						e.getDamager().sendMessage("§2[Info]:§f You can't hit that");
 						e.setCancelled(true);
 
@@ -1399,10 +1401,10 @@ public class ListenerRegionProtection implements Listener
 				}
 
 			}
-			else
-				e.setCancelled(true);
 
 		}
+		else
+			e.setCancelled(true);
 
 	}
 
@@ -1445,10 +1447,10 @@ public class ListenerRegionProtection implements Listener
 				}
 
 			}
-			else
-				e.setCancelled(true);
 
 		}
+		else
+			e.setCancelled(true);
 
 	}
 

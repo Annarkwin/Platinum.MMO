@@ -57,8 +57,7 @@ public class RegionGive extends PlatinumCommand
 				{
 
 					p.sendMessage("§2[Info]:§f Giving region to " + target.getName());
-					r.removeAllowed(p.getUniqueId());
-					r.removeAllowed(target.getUniqueId());
+					r.clearAllowed();
 					r.setOwner(target.getUniqueId());
 
 				}
